@@ -1,21 +1,9 @@
 import React, { Component, Fragment } from 'react'
-import ClassNames from 'classnames'
-import NumberFormat from 'react-number-format'
-
-import sample_tanah_1 from './assets/sample-tanah-1.jpg'
-import sample_tanah_2 from './assets/sample-tanah-2.jpg'
-import sample_tanah_3 from './assets/sample-tanah-3.jpg'
-import sample_tanah_4 from './assets/sample-tanah-4.jpg'
-import ic_location from '../../assets/ic-location.svg'
-import ic_time from '../../assets/ic-time.svg'
-import Countdown from '../../components/Countdown'
-import BottomSheet from '../../components/BottomSheet'
 import Navbar from '../../components/Navbar'
 
 import { thousandSeparator } from '../../utils/currency'
 
 import assetService from '../../services/AssetService'
-import bidService from '../../services/BidService'
 
 import { withRouter } from 'react-router-dom'
 
@@ -120,4 +108,4 @@ class Search extends Component {
   }
 }
 
-export default withRouter(Detail)
+export default withRouter(Search)
