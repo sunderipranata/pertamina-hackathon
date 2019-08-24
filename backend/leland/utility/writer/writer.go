@@ -2,6 +2,7 @@ package writer
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/devinryanriota/pertamina-hackathon/backend/leland/utility/helper"
@@ -61,7 +62,10 @@ func WriteDataMessage(w http.ResponseWriter, data interface{}, message string, h
 func (r *Response) respWrite(w http.ResponseWriter) error {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "*")
+
 	w.WriteHeader(r.Meta.HTTPStatus)
+	fmt.Println(r.Meta.HTTPStatus)
 
 	encoder := json.NewEncoder(w)
 	err := encoder.Encode(r)

@@ -28,6 +28,7 @@ class Detail extends Component {
       showInputBidPrice: false,
       assetId: props.match.params.id,
       assetDetail: null,
+      auctionDetail: null,
       bidValue: null
     }
   }
@@ -41,6 +42,8 @@ class Detail extends Component {
         console.log('result', result.data.data)
         this.setState({
           assetDetail: result.data.data
+        }, function() {
+          this.getAuctionInfo()
         })
       }
     });
@@ -67,8 +70,8 @@ class Detail extends Component {
     let { assetDetail, bidValue } = this.state
     let payload = {
       user_id: 1,
-      assset_id: assetDetail.id,
-      bid_price: bidValue
+      asset_id: assetDetail.id,
+      bid_price: parseInt(bidValue)
     }
 
     bidService.placeBid(payload, (result) => {
@@ -80,13 +83,27 @@ class Detail extends Component {
     });
   }
 
+  getAuctionInfo = () => {
+    let { assetDetail } = this.state
+    let assetId = assetDetail.id
+    console.log('asset id', assetId)
+    assetService.getAuctionInfo(assetId, (result) => {
+      if (result.success) {
+        console.log('result', result.data.data)
+        this.setState({
+          auctionDetail: result.data.data
+        })
+      }
+    });
+  }
+
   render() {
-    let { assetDetail, bidValue } = this.state
+    let { assetDetail, bidValue, auctionDetail } = this.state
     const { activeImage } = this.state
     const currentDate = new Date()
     const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear()
 
-    if(assetDetail !== null) {
+    if(assetDetail !== null && auctionDetail !== null) {
       var suitArr = (assetDetail.category).split(',')
 
       return (
@@ -207,11 +224,11 @@ class Detail extends Component {
               <div className="ph-detail__col-2 u-mt1">
                 <div>
                   <p className="label--disabled u-mb0">Penawaran tertinggi</p>
-                  <p className="label--md u-bold u-m0">Rp{thousandSeparator(878000000)}</p>
+                  <p className="label--md u-bold u-m0">Rp{thousandSeparator(auctionDetail.max_price)}</p>
                 </div>
                 <div>
                   <p className="label--disabled u-mb0">Penawaran rata-rata</p>
-                  <p className="label--md u-bold u-m0">Rp{thousandSeparator(848000000)}</p>
+                  <p className="label--md u-bold u-m0">Rp{thousandSeparator(auctionDetail.avg_price)}</p>
                 </div>
               </div>
             </section>

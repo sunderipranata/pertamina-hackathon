@@ -9,6 +9,7 @@ import (
 	"github.com/devinryanriota/pertamina-hackathon/backend/leland/database"
 	"github.com/devinryanriota/pertamina-hackathon/backend/leland/handler"
 	"github.com/julienschmidt/httprouter"
+	"github.com/rs/cors"
 	"github.com/subosito/gotenv"
 )
 
@@ -63,13 +64,16 @@ func main() {
 	router.GET("/assets/:id", lelandHandler.GetAsset)
 	router.POST("/assets", lelandHandler.NewAsset)
 	router.PATCH("/assets/:id/running", lelandHandler.ToggleAsset)
+	//router.POST("/assets/prediction", leland.PredictAsset)
 
-	// router.GET("auctions/:id", lelandHandler.GetAuction) //return avg price & max price
-	// router.POST("/auctions/:id", lelandHandler.InsertAuction)
-
+	router.GET("/auctions-info/:id", lelandHandler.GetAuctionInfo) //return avg price & max price
+	router.GET("/auctions/:id", lelandHandler.GetAuctions)
+	router.POST("/auctions", lelandHandler.NewAuction)
 	// Start server
 	log.Println("Listening at port", os.Getenv("PORT"))
-	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router))
+	router2 := cors.Default().Handler(router)
+
+	log.Fatal(http.ListenAndServe(":"+os.Getenv("PORT"), router2))
 }
 
 // router.POST("/assets", lelandHandler.NewAsset)
