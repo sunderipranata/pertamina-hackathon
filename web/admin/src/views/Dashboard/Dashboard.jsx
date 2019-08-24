@@ -80,12 +80,20 @@ class Dashboard extends React.Component {
                 <CardIcon color="warning">
                   <Icon>content_copy</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Used Space</p>
+                <p className={classes.cardCategory}>Jumlah Aset</p>
                 <h3 className={classes.cardTitle}>
-                  49/50 <small>GB</small>
+                  49/50
                 </h3>
               </CardHeader>
               <CardFooter stats>
+                <div className={classes.stats}>
+                  Aset Tanah: 30
+                </div>
+                <div className={classes.stats}>
+                  Aset Bangunan: 20
+                </div>
+              </CardFooter>
+              {/* <CardFooter stats>
                 <div className={classes.stats}>
                   <Danger>
                     <Warning />
@@ -94,7 +102,7 @@ class Dashboard extends React.Component {
                     Get more space
                   </a>
                 </div>
-              </CardFooter>
+              </CardFooter> */}
             </Card>
           </GridItem>
           <GridItem xs={12} sm={6} md={3}>
@@ -103,13 +111,13 @@ class Dashboard extends React.Component {
                 <CardIcon color="success">
                   <Store />
                 </CardIcon>
-                <p className={classes.cardCategory}>Revenue</p>
-                <h3 className={classes.cardTitle}>$34,245</h3>
+                <p className={classes.cardCategory}>Pendapatan</p>
+                <h3 className={classes.cardTitle}>Rp. 10,123,456,789</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
                   <DateRange />
-                  Last 24 Hours
+                  1 Bulan Terakhir
                 </div>
               </CardFooter>
             </Card>
@@ -120,8 +128,8 @@ class Dashboard extends React.Component {
                 <CardIcon color="danger">
                   <Icon>info_outline</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
-                <h3 className={classes.cardTitle}>75</h3>
+                <p className={classes.cardCategory}>Lelang aktif</p>
+                <h3 className={classes.cardTitle}>3</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
@@ -137,8 +145,8 @@ class Dashboard extends React.Component {
                 <CardIcon color="info">
                   <Accessibility />
                 </CardIcon>
-                <p className={classes.cardCategory}>Followers</p>
-                <h3 className={classes.cardTitle}>+245</h3>
+                <p className={classes.cardCategory}>Jumlah Pembeli</p>
+                <h3 className={classes.cardTitle}>1200</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
