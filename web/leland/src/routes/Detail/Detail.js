@@ -14,6 +14,8 @@ import Navbar from '../../components/Navbar'
 
 import { thousandSeparator } from '../../utils/currency'
 
+import assetService from '../../services/AssetService'
+
 import './Detail.scss'
 
 class Detail extends Component {
@@ -22,12 +24,26 @@ class Detail extends Component {
 
     this.state = {
       activeImage: sample_tanah_1,
-      showInputBidPrice: false
+      showInputBidPrice: false,
+      assetId: props.match.params.id,
+      assetDetail: {}
     }
   }
 
   componentDidMount() {
     window.scrollTo(0, 0)
+    let id = this.state.assetId
+
+    assetService.getAssetsById(id, (result) => {
+      if (result.success) {
+        console.log('result', result.data.data)
+        this.setState({
+          assetDetail: result.data.data
+        })
+      }
+    });
+    
+    console.log('ID', this.state.assetId)
   }
 
   handleChangeActive = (activeImage) => {

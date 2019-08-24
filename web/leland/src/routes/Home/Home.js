@@ -61,6 +61,7 @@ class Home extends Component {
         <section name="section-popular" className="container">
           <h2>Aset populer</h2>
           <CardAssets
+            id = { firstRunningAsset.id }
             title= { firstRunningAsset.name }
             type= { firstRunningAsset.type }
             location= { firstRunningAsset.city }
@@ -80,7 +81,6 @@ class Home extends Component {
 
       let remainingRunningAssets = []
       runningAssets.forEach((a, i) => {
-        console.log('i', i)
         if(i > 0) {
           let isLand = a.type == 'TANAH' ? true : false
           let url
