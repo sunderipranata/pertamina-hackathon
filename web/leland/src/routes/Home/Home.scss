@@ -1,0 +1,87 @@
+@import "../../styles/colors.scss";
+
+.ph-home {
+  &__wrapper {
+    h2 {
+      font-size: 16px;
+      color: $color-black;
+    }
+
+    margin-bottom: 56px;
+  }
+
+  &__bg {
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 100%;
+      z-index: -1;
+      display: block;
+      opacity: .5;
+      background: $color-blue-light;
+      background-size: cover;
+      height: 200px;
+    }
+  }
+
+  &__category {
+      display: grid;
+      grid-gap: 16px;
+      grid-template-columns: repeat(2,1fr);
+      margin-top: 16px;
+
+      .text {
+        font-size: 14px;
+        font-weight: bold;
+      }
+  }
+
+  &__suit-for {
+    border-radius: 10px;
+    width: 90px;
+    height: 148px;
+    position: relative;
+    margin-left: 16px;
+
+    .text {
+      font-size: 16px;
+      color: $color-white;
+      font-weight: bold;
+      bottom: 12px;
+      right: 12px;
+      position: absolute;
+    }
+  }
+
+  &__ongoing {
+    margin-left: 16px;
+    margin-bottom: 16px;
+    color: $color-black;
+
+    .assets-image {
+      position: relative;
+      height: 100px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .ongoing-container {
+      padding: 8px;
+
+      .price {
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+
+      .location {
+        display: flex;
+        font-size: 12px;
+      }
+
+      .area {
+        font-size: 12px;
+      }
+    }
+  }
+}
