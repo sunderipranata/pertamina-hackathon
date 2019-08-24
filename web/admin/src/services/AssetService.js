@@ -31,7 +31,6 @@ assetService.insertAsset = function (payload, callback) {
   request
     .post(baseUrl + postInsertAssetsPath)
     .set('Content-Type', 'application/json')
-    // .set('Access-Control-Allow-Origin', '*')
     .send(payload)
     .end(function (err, res) {
       if(err) {

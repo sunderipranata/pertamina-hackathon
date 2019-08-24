@@ -34,6 +34,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 import { textAlign } from "@material-ui/system";
 
 // import avatar from "assets/img/faces/marc.jpg";
+import assetService from '../../services/AssetService'
 
 const styles = {
   cardCategoryWhite: {
@@ -74,8 +75,43 @@ class UserProfile extends React.Component {
     })
   }
 
+  handleMockInput = () => {
+    let mockInput = {
+      scheme: 'BELI',
+      asset_type: 'TANAH',
+      name: 'MOCK',
+      address: 'jalan tanah abang',
+      city: 'TANGERANG',
+      category: 'KAFE, RESTORAN',
+      land_area: 200,
+      building_area: 100,
+      certificate_type: 'Surat Kepemilikan Tanah',
+      info: '',
+      start_price: 2000000000,
+      start_time: 1566669482470,
+      end_time: 1566669482470
+    }
+
+    this.setState({
+      input: mockInput
+    })
+  }
+
+  handleSubmitAsset = () => {
+    let payload = this.state.input
+    assetService.insertAsset(payload, (result) => {
+      console.log('result eee', result)
+      if (result.success) {
+        console.log('result', result)
+
+        //redirect
+      }
+    });
+  }
+
   render() {
-    let { classes } = this.state
+    let { classes, input } = this.state
+    console.log('asset service', assetService)
     return (
       <div>
         <GridContainer>
@@ -93,7 +129,7 @@ class UserProfile extends React.Component {
                       formControlProps={{
                         fullWidth: true
                       }}
-                      onChange = { this.handleChange.bind(this, 'assetName') }
+                      value = { input.name }
                     />
                   </GridItem>
                   <GridItem xs={12} sm={12} md={6}>
@@ -214,7 +250,8 @@ class UserProfile extends React.Component {
                 </GridContainer>
               </CardBody>
               <CardFooter>
-                <Button color="primary">Tambah Aset</Button>
+                <Button color="primary" onClick = { this.handleSubmitAsset.bind(this) }>Tambah Aset</Button>
+                <Button color="primary" onClick = { this.handleMockInput.bind(this) }>Mock Input!</Button>
               </CardFooter>
             </Card>
           </GridItem>
