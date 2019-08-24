@@ -44,7 +44,7 @@ class Detail extends Component {
         })
       }
     });
-    
+
     console.log('ID', this.state.assetId)
   }
 
@@ -277,7 +277,6 @@ class Detail extends Component {
         <div></div>
       )
     }
-    
   }
 }
 

@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Slider from 'react-slick'
+import { Link } from 'react-router-dom'
 
 import './Home.scss'
 import category_tanah from './assets/category-tanah.png'
@@ -67,7 +68,7 @@ class Home extends Component {
             location= { firstRunningAsset.city }
             area={ firstRunningAsset.type == 'TANAH' ? firstRunningAsset.land_area : firstRunningAsset.building_area }
             bidders={ 101 }
-            suit= { firstRunningAsset.category } 
+            suit= { firstRunningAsset.category }
             price={ firstRunningAsset.start_price }
           />
         </section>
@@ -80,7 +81,7 @@ class Home extends Component {
             <h2 className="u-m0">Lelang lainnya</h2>
           </section>
         )
-  
+
         let remainingRunningAssets = []
         runningAssets.forEach((a, i) => {
           if(i > 0) {
@@ -94,7 +95,7 @@ class Home extends Component {
             if(mod == 2)
               url = sample_tanah_3
             let obj = (
-              <div style={{ 'width': '200px' }}>
+              <Link to={'/detail/' + a.id} className="u-block" style={{ 'width': '200px' }}>
                 <div className="card ph-home__ongoing">
                   <div className="assets-image"
                     style={{
@@ -111,18 +112,17 @@ class Home extends Component {
                     <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
-  
             remainingRunningAssets.push(obj)
           }
         })
-  
+
         result.push(
           <Slider {...sliderSettings}>
             { remainingRunningAssets }
           </Slider>
-        ) 
+        )
       }
     }
     return (
@@ -198,7 +198,7 @@ class Home extends Component {
               <p className="text u-m0 u-right">Parkir</p>
             </div>
           </div>
-          
+
           { this.renderRunningAssets() }
 
         </div>
