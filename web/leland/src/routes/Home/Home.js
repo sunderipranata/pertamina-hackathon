@@ -8,6 +8,8 @@ import suit_for_cafe from './assets/suit-for-cafe.png'
 import suit_for_gudang from './assets/suit-for-gudang.png'
 import suit_for_kantor from './assets/suit-for-kantor.png'
 import suit_for_kebun from './assets/suit-for-kebun.png'
+import suit_for_restoran from './assets/suit-for-restoran.jpg'
+import suit_for_parkir from './assets/suit-for-parkir.jpg'
 import ic_location from '../../assets/ic-location.svg'
 
 import sample_tanah_1 from './assets/sample-tanah-1.jpg'
@@ -38,9 +40,6 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    window.addEventListener("touchstart", this.touchStart);
-    window.addEventListener("touchmove", this.preventTouch, { passive: false });
-
     assetService.getAllAssets((result) => {
       if (result.success) {
         console.log('res2', result)
@@ -48,38 +47,12 @@ class Home extends Component {
     });
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("touchstart", this.touchStart);
-    window.removeEventListener("touchmove", this.preventTouch, {
-      passive: false
-    });
-  }
-
-  touchStart = (e) => {
-    this.firstClientX = e.touches[0].clientX;
-    this.firstClientY = e.touches[0].clientY;
-  }
-
-  preventTouch = (e) => {
-    const minValue = 5; // threshold
-
-    this.clientX = e.touches[0].clientX - this.firstClientX;
-    this.clientY = e.touches[0].clientY - this.firstClientY;
-
-    // Vertical scrolling does not work when you start swiping horizontally.
-    if (Math.abs(this.clientX) > minValue) {
-      e.preventDefault();
-      e.returnValue = false;
-      return false;
-    }
-  }
-
   render() {
     return (
       <Fragment>
         <div className="ph-home__wrapper">
           <div className="ph-home__bg" />
-          <section name="section-search" className="container">
+          <section name="section-search" className="container" style={{ marginTop: '24px' }}>
             <input name="search" className="search" placeholder="Cari Lokasi" />
           </section>
           <section name="section-category" className="container">
@@ -98,44 +71,50 @@ class Home extends Component {
           <section name="section-suit-fot" className="container">
             <h2 className="u-m0">Aset cocok untuk</h2>
           </section>
-          <Slider {...sliderSettings}>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_cafe + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Kafe</p>
-              </div>
+          <div className="overflow-x-scroll">
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_cafe + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Kafe</p>
             </div>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_kebun + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Kebun</p>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_kebun + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Kebun</p>
             </div>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_gudang + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Gudang</p>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_gudang + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Gudang</p>
             </div>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_kantor + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Kantor</p>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_kantor + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Kantor</p>
             </div>
-          </Slider>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_restoran + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Restoran</p>
+            </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_parkir + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Parkir</p>
+            </div>
+          </div>
           <section name="section-popular" className="container">
             <h2>Aset popular</h2>
             <CardAssets
