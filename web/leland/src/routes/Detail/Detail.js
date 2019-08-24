@@ -26,7 +26,8 @@ class Detail extends Component {
       activeImage: sample_tanah_1,
       showInputBidPrice: false,
       assetId: props.match.params.id,
-      assetDetail: null
+      assetDetail: null,
+      bidValue: null
     }
   }
 
@@ -54,8 +55,15 @@ class Detail extends Component {
     this.setState({ showInputBidPrice: !this.state.showInputBidPrice })
   }
 
+  numberFormatChange = (value) => {
+    console.log('value', value)
+    this.setState({
+      bidValue: value.value
+    })
+  }
+
   render() {
-    let { assetDetail } = this.state
+    let { assetDetail, bidValue } = this.state
     const { activeImage } = this.state
     const currentDate = new Date()
     const year = (currentDate.getMonth() === 11 && currentDate.getDate() > 23) ? currentDate.getFullYear() + 1 : currentDate.getFullYear()
@@ -233,12 +241,14 @@ class Detail extends Component {
             <div className="input-container">
               <span>Rp</span>
               <NumberFormat
+                value = { bidValue }
                 className='input-price'
                 name='bid-price'
                 allowNegative={false}
                 placeholder='1.000.000.000'
                 thousandSeparator={'.'}
-                decimalSeparator={','} />
+                decimalSeparator={','}
+                onValueChange = { this.numberFormatChange } />
             </div>
             <button className="button button--main">Tawar Harga</button>
           </BottomSheet>
