@@ -58,29 +58,30 @@ const styles = {
   }
 };
 
+const tableHeader = ["ID", "Scheme", "Name", "City", "Start Price", "Start Time", "End Time"]
+
 function AssetList(props) {
   const { classes } = props;
+
+  //api call
+
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="success">
-            <h4 className={classes.cardTitleWhite}>Simple Table</h4>
+            <h4 className={classes.cardTitleWhite}>Assets</h4>
             <p className={classes.cardCategoryWhite}>
-              Here is a subtitle for this table
+              Aset-aset
             </p>
           </CardHeader>
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={["Name", "Country", "City", "Salary"]}
+              tableHead={ tableHeader }
               tableData={[
-                ["Dakota Rice", "Niger", "Oud-Turnhout", "$36,738"],
-                ["Minerva Hooper", "Curaçao", "Sinaai-Waas", "$23,789"],
-                ["Sage Rodriguez", "Netherlands", "Baileux", "$56,142"],
-                ["Philip Chaney", "Korea, South", "Overland Park", "$38,735"],
-                ["Doris Greene", "Malawi", "Feldkirchen in Kärnten", "$63,542"],
-                ["Mason Porter", "Chile", "Gloucester", "$78,615"]
+                ["ID1", "BELI", "Rumah 3 lantai", "Tangerang", "Rp. 3,738,000,000", "2019-08-02 18:00:00", "2019-08-03 18:00:00"],
+                ["ID2", "BELI", "Ruko Mewah", "Tangerang", "Rp. 13,000,000,000", "2019-08-02 18:00:00", "2019-08-03 18:00:00"]
               ]}
             />
           </CardBody>
