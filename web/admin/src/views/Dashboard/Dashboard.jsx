@@ -128,8 +128,8 @@ class Dashboard extends React.Component {
                 <CardIcon color="danger">
                   <Icon>info_outline</Icon>
                 </CardIcon>
-                <p className={classes.cardCategory}>Fixed Issues</p>
-                <h3 className={classes.cardTitle}>75</h3>
+                <p className={classes.cardCategory}>Lelang aktif</p>
+                <h3 className={classes.cardTitle}>3</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
