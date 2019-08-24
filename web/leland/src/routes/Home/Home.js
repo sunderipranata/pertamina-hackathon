@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import CardAssets from '../../components/CardAssets/CardAssets'
 
+import assetService from '../../services/AssetService'
 const sliderSettings = {
   autoplay: false,
   dots: false,
@@ -25,6 +26,7 @@ const sliderSettings = {
 }
 
 class Home extends Component {
+<<<<<<< HEAD
   componentDidMount() {
     window.addEventListener("touchstart", this.touchStart);
     window.addEventListener("touchmove", this.preventTouch, { passive: false });
@@ -56,6 +58,17 @@ class Home extends Component {
     }
   }
 
+=======
+  
+  componentDidMount() {
+    assetService.getAssets(null, (result) => {
+      if (result.success) {
+        console.log('res2', result)
+      }
+    });
+  }
+
+>>>>>>> 13402a55ffa82bf89225b2d0df970e8e86dc1ee2
   render() {
     return (
       <Fragment>
