@@ -7,6 +7,7 @@ import category_bangunan from './assets/category-bangunan.png'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 
+import assetService from '../../services/AssetService'
 const sliderSettings = {
   autoplay: false,
   dots: false,
@@ -18,6 +19,15 @@ const sliderSettings = {
 }
 
 class Home extends Component {
+  
+  componentDidMount() {
+    assetService.getAssets(null, (result) => {
+      if (result.success) {
+        console.log('res2', result)
+      }
+    });
+  }
+
   render() {
     return (
       <Fragment>
