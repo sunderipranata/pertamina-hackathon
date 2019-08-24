@@ -2,7 +2,6 @@ package handler
 
 import (
 	"errors"
-	"fmt"
 	"net/http"
 
 	"github.com/devinryanriota/pertamina-hackathon/backend/leland"
@@ -44,7 +43,11 @@ func (h *Handler) GetAssets(w http.ResponseWriter, r *http.Request, params httpr
 
 // GetRunningAssets is for GET /assets/running
 func (h *Handler) GetRunningAssets(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
-	assets, err := h.leland.GetRunningAssets()
+	urlParams := r.URL.Query()
+	category := urlParams.Get("category")
+	assetType := urlParams.Get("asset_type")
+
+	assets, err := h.leland.GetRunningAssets(category, assetType)
 	if err != nil {
 		writer.WriteError(w, errors.New("failed to get running assets"), 500)
 	}
@@ -65,12 +68,11 @@ func (h *Handler) GetAsset(w http.ResponseWriter, r *http.Request, params httpro
 	writer.WriteData(w, asset, 200)
 }
 
-// NewAsset is for POST /_exclusive/awards
+// NewAsset is for POST /assets
 func (h *Handler) NewAsset(w http.ResponseWriter, r *http.Request, params httprouter.Params) {
 	// parsing user_id is unsecure (obviously)
 	// but this is only for prototype purposes, no auth needed
 
-	fmt.Println(r)
 	newAsset, err := parseAsset(r)
 	if err != nil {
 		writer.WriteError(w, err, 400)

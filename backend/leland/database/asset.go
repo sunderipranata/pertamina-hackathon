@@ -36,11 +36,31 @@ func (db *MongoDB) GetAssets() (assets []leland.Asset, err error) {
 }
 
 // GetRunningAssets get all running assets
-func (db *MongoDB) GetRunningAssets() (assets []leland.Asset, err error) {
+func (db *MongoDB) GetRunningAssets(category string, assetType string) (assets []leland.Asset, err error) {
 	c := db.Collection(constant.AssetCollectionName)
-	query := bson.M{
-		"running": true,
+	var query bson.M
+	if category != "" && assetType != "" {
+		query = bson.M{
+			"running":    true,
+			"category":   category,
+			"asset_type": assetType,
+		}
+	} else if category == "" && assetType != "" {
+		query = bson.M{
+			"running":    true,
+			"asset_type": assetType,
+		}
+	} else if assetType == "" && category != "" {
+		query = bson.M{
+			"running":  true,
+			"category": category,
+		}
+	} else {
+		query = bson.M{
+			"running": true,
+		}
 	}
+
 	err = c.Find(query).Sort("-created_at").All(&assets)
 	return assets, errors.Wrap(err, "database find failed")
 }

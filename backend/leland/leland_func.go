@@ -11,8 +11,8 @@ func (leland *Leland) GetAssets() (assets []Asset, err error) {
 }
 
 // GetRunningAssets get all assets
-func (leland *Leland) GetRunningAssets() (assets []Asset, err error) {
-	assets, err = leland.database.GetRunningAssets()
+func (leland *Leland) GetRunningAssets(category string, assetType string) (assets []Asset, err error) {
+	assets, err = leland.database.GetRunningAssets(category, assetType)
 	return assets, errors.Wrap(err, "could not retrieve all assets")
 }
 

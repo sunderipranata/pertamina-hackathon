@@ -8,9 +8,10 @@ import (
 
 // Asset holds data for asset
 type Asset struct {
-	ID              bson.ObjectId `bson:"_id" json:"id" schema:"-"`
+	ID              bson.ObjectId `bson:"_id" json:"id"`
 	Scheme          string        `json:"scheme" bson:"scheme"`
-	Name            string        `json:"name" bson:"name" schema:"name,required"`
+	AssetType       string        `json:"asset_type" bson:"asset_type"`
+	Name            string        `json:"name" bson:"name"`
 	Address         string        `json:"address" bson:"address"`
 	City            string        `json:"city" bson:"city"`
 	Category        string        `json:"category" bson:"category"`

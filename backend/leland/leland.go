@@ -10,7 +10,7 @@ type Leland struct {
 type Database interface {
 	InsertAsset(Asset) error
 	GetAssets() ([]Asset, error)
-	GetRunningAssets() ([]Asset, error)
+	GetRunningAssets(string, string) ([]Asset, error)
 	GetAsset(string) (Asset, error)
 	UpdateAsset(string, Asset) error
 	// DeleteAsset(string) error
