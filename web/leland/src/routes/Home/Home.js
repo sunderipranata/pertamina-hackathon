@@ -8,7 +8,11 @@ import suit_for_cafe from './assets/suit-for-cafe.png'
 import suit_for_gudang from './assets/suit-for-gudang.png'
 import suit_for_kantor from './assets/suit-for-kantor.png'
 import suit_for_kebun from './assets/suit-for-kebun.png'
+import ic_location from '../../assets/ic-location.svg'
 
+import sample_tanah_1 from './assets/sample-tanah-1.jpg'
+import sample_tanah_2 from './assets/sample-tanah-2.jpg'
+import sample_tanah_3 from './assets/sample-tanah-3.jpg'
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
@@ -127,8 +131,75 @@ class Home extends Component {
           </Slider>
           <section name="section-popular" className="container">
             <h2>Aset popular</h2>
-            <CardAssets />
+            <CardAssets
+              title="Tanah Lokasi Strategis"
+              type="Tanah"
+              location="Bekasi"
+              area={2000}
+              bidders={500}
+              suit="Cafe, Toko"
+              price={800000000}
+            />
           </section>
+          <section name="section-suit-fot" className="container">
+            <h2 className="u-m0">Lelang lainnya</h2>
+          </section>
+          <Slider {...sliderSettings}>
+            <div style={{ 'width': '200px' }}>
+              <div className="card ph-home__ongoing">
+                <div className="assets-image"
+                  style={{
+                    'background': 'url(' + sample_tanah_1 + ') no-repeat center center',
+                    'backgroundSize': 'cover',
+                    'backgroundPosition': 'top'}}
+                />
+                <div className="ongoing-container">
+                  <p className="price u-bold">Rp1.000.000.000</p>
+                  <div className="location">
+                    <img src={ic_location} style={{ marginRight: '8px' }} />
+                    Tangerang
+                  </div>
+                  <p className="area u-m0">Luas Tanah: 2.000 m<sup>2</sup></p>
+                </div>
+              </div>
+            </div>
+            <div style={{ 'width': '200px' }}>
+              <div className="card ph-home__ongoing">
+                <div className="assets-image"
+                  style={{
+                    'background': 'url(' + sample_tanah_2 + ') no-repeat center center',
+                    'backgroundSize': 'cover',
+                    'backgroundPosition': 'top'}}
+                />
+                <div className="ongoing-container">
+                  <p className="price u-bold">Rp500.000.000</p>
+                  <div className="location">
+                    <img src={ic_location} style={{ marginRight: '8px' }} />
+                    Depok
+                  </div>
+                  <p className="area u-m0">Luas Tanah: 3.000 m<sup>2</sup></p>
+                </div>
+              </div>
+            </div>
+            <div style={{ 'width': '200px' }}>
+              <div className="card ph-home__ongoing">
+                <div className="assets-image"
+                  style={{
+                    'background': 'url(' + sample_tanah_3 + ') no-repeat center center',
+                    'backgroundSize': 'cover',
+                    'backgroundPosition': 'top'}}
+                />
+                <div className="ongoing-container">
+                  <p className="price u-bold">Rp700.000.000</p>
+                  <div className="location">
+                    <img src={ic_location} style={{ marginRight: '8px' }} />
+                    Bekasi Utara
+                  </div>
+                  <p className="area u-m0">Luas Tanah: 4.000 m<sup>2</sup></p>
+                </div>
+              </div>
+            </div>
+          </Slider>
         </div>
       </Fragment>
     )
