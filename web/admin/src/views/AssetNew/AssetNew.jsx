@@ -99,6 +99,7 @@ class UserProfile extends React.Component {
 
   handleSubmitAsset = () => {
     let payload = this.state.input
+    console.log('submit payload', payload)
     assetService.insertAsset(payload, (result) => {
       console.log('result eee', result)
       if (result.success) {
