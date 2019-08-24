@@ -15,6 +15,7 @@ import Navbar from '../../components/Navbar'
 import { thousandSeparator } from '../../utils/currency'
 
 import assetService from '../../services/AssetService'
+import bidService from '../../services/BidService'
 
 import './Detail.scss'
 
@@ -60,6 +61,23 @@ class Detail extends Component {
     this.setState({
       bidValue: value.value
     })
+  }
+
+  submitBid = () => {
+    let { assetDetail, bidValue } = this.state
+    let payload = {
+      user_id: 1,
+      assset_id: assetDetail.id,
+      bid_price: bidValue
+    }
+
+    bidService.placeBid(payload, (result) => {
+      if (result.success) {
+        console.log('result', result)
+
+        //redirect
+      }
+    });
   }
 
   render() {
@@ -250,7 +268,7 @@ class Detail extends Component {
                 decimalSeparator={','}
                 onValueChange = { this.numberFormatChange } />
             </div>
-            <button className="button button--main">Tawar Harga</button>
+            <button className="button button--main" onClick = { this.submitBid }>Tawar Harga</button>
           </BottomSheet>
         </Fragment>
       )
