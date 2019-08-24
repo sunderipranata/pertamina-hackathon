@@ -16,17 +16,16 @@
 
 */
 import React from "react";
-// nodejs library to set properties for components
 import PropTypes from "prop-types";
-// @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-// core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
 import Table from "components/Table/Table.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+
+import assetService from '../../services/AssetService'
 
 const styles = {
   cardCategoryWhite: {
@@ -60,39 +59,67 @@ const styles = {
 
 const tableHeader = ["ID", "Scheme", "Name", "City", "Start Price", "Start Time", "End Time"]
 
-function AssetList(props) {
-  const { classes } = props;
+class AssetList extends React.Component {
+  constructor(props) {
+    super()
+    this.state = {
+      tableData: [],
+      classes: props.classes
+    }
+  }
 
-  //api call
+  formatDataTable(data) {
+    let res = []
+    data.forEach((d) => {
+      let result = []
+      result.push(d['id'])
+      result.push(d['scheme'])
+      result.push(d['name'])
+      result.push(d['city'])
+      result.push(d['start_price'])
+      result.push(d['start_time'])
+      result.push(d['end_time'])
+  
+      res.push(result)
+    })
+    return res
+  }
 
-  return (
-    <GridContainer>
-      <GridItem xs={12} sm={12} md={12}>
-        <Card>
-          <CardHeader color="success">
-            <h4 className={classes.cardTitleWhite}>Assets</h4>
-            <p className={classes.cardCategoryWhite}>
-              Aset-aset
-            </p>
-          </CardHeader>
-          <CardBody>
-            <Table
-              tableHeaderColor="primary"
-              tableHead={ tableHeader }
-              tableData={[
-                ["ID1", "BELI", "Rumah 3 lantai", "Tangerang", "Rp. 3,738,000,000", "2019-08-02 18:00:00", "2019-08-03 18:00:00"],
-                ["ID2", "BELI", "Ruko Mewah", "Tangerang", "Rp. 13,000,000,000", "2019-08-02 18:00:00", "2019-08-03 18:00:00"]
-              ]}
-            />
-          </CardBody>
-        </Card>
-      </GridItem>
-    </GridContainer>
-  );
+  componentDidMount() {
+    //api call
+    assetService.getAllAssets((result) => {
+      if (result.success) {
+        console.log('res2', result.data)
+        this.setState({
+          tableData: this.formatDataTable(result.data.data)
+        })
+      }
+    });
+  }
+
+  render() {
+    return (
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader color="success">
+              <h4 className={this.state.classes.cardTitleWhite}>Assets</h4>
+              <p className={this.state.classes.cardCategoryWhite}>
+                Aset-aset
+              </p>
+            </CardHeader>
+            <CardBody>
+              <Table
+                tableHeaderColor="primary"
+                tableHead={ tableHeader }
+                tableData={ this.state.tableData }
+              />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+    );
+  }
 }
-
-AssetList.propTypes = {
-  classes: PropTypes.object
-};
 
 export default withStyles(styles)(AssetList);
