@@ -58,7 +58,7 @@ const styles = {
   }
 };
 
-const tableHeader = ["ID", "Asset", "Harga"]
+const tableHeader = ["ID", "Asset", "Harga"];
 
 function AuctionList(props) {
   const { classes } = props;
@@ -70,15 +70,12 @@ function AuctionList(props) {
       <GridItem xs={12} sm={12} md={12}>
         <Card>
           <CardHeader color="success">
-            <h4 className={classes.cardTitleWhite}>Auctions</h4>
-            <p className={classes.cardCategoryWhite}>
-              Lelang!
-            </p>
+            <h4 className={classes.cardTitleWhite}>Daftar Lelang</h4>
           </CardHeader>
           <CardBody>
             <Table
               tableHeaderColor="primary"
-              tableHead={ tableHeader }
+              tableHead={tableHeader}
               tableData={[
                 ["AUC-1", "ID1", "Rp. 3,738,000,000"],
                 ["AUC-2", "ID2", "Rp. 13,000,000,000"]

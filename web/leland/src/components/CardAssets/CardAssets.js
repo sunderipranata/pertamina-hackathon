@@ -12,6 +12,7 @@ import { thousandSeparator } from '../../utils/currency'
 
 class CardAssets extends Component {
   static propTypes = {
+    id: PropTypes.string,
     title: PropTypes.string,
     type: PropTypes.string,
     location: PropTypes.string,
@@ -22,14 +23,15 @@ class CardAssets extends Component {
   }
 
   render() {
-    const { title, type, location, area, bidders, suit, price } = this.props
+    const { id, title, type, location, area, bidders, suit, price } = this.props
 
     var suitArr = suit.split(',')
 
     console.log(suitArr)
+    let detailUrl = '/detail/' + id
 
     return (
-      <Link to={DETAIL_PATH} className="card u-block">
+      <Link to={detailUrl} className="card u-block">
         <div className="ph-card__image"
           style={{
             'background': 'url(' + sample_tanah + ') no-repeat center center',

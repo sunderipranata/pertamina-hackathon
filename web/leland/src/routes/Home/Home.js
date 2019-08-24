@@ -61,6 +61,7 @@ class Home extends Component {
         <section name="section-popular" className="container">
           <h2>Aset populer</h2>
           <CardAssets
+            id = { firstRunningAsset.id }
             title= { firstRunningAsset.name }
             type= { firstRunningAsset.type }
             location= { firstRunningAsset.city }
@@ -72,55 +73,57 @@ class Home extends Component {
         </section>
       )
 
-      result.push(
-        <section name="section-suit-fot" className="container">
-          <h2 className="u-m0">Lelang lainnya</h2>
-        </section>
-      )
 
-      let remainingRunningAssets = []
-      runningAssets.forEach((a, i) => {
-        console.log('i', i)
-        if(i > 0) {
-          let isLand = a.type == 'TANAH' ? true : false
-          let url
-          let mod = i % 3
-          if(mod == 0)
-            url = sample_tanah_1
-          if(mod == 1)
-            url = sample_tanah_2
-          if(mod == 2)
-            url = sample_tanah_3
-          let obj = (
-            <div style={{ 'width': '200px' }}>
-              <div className="card ph-home__ongoing">
-                <div className="assets-image"
-                  style={{
-                    'background': 'url('+ url +') no-repeat center center',
-                    'backgroundSize': 'cover',
-                    'backgroundPosition': 'top'}}
-                />
-                <div className="ongoing-container">
-                  <p className="price u-bold">Rp { a.start_price }</p>
-                  <div className="location">
-                    <img src={ic_location} style={{ marginRight: '8px' }} />
-                    { a.city }
+      if(runningAssets.length > 1) {
+        result.push(
+          <section name="section-suit-fot" className="container">
+            <h2 className="u-m0">Lelang lainnya</h2>
+          </section>
+        )
+  
+        let remainingRunningAssets = []
+        runningAssets.forEach((a, i) => {
+          if(i > 0) {
+            let isLand = a.type == 'TANAH' ? true : false
+            let url
+            let mod = i % 3
+            if(mod == 0)
+              url = sample_tanah_1
+            if(mod == 1)
+              url = sample_tanah_2
+            if(mod == 2)
+              url = sample_tanah_3
+            let obj = (
+              <div style={{ 'width': '200px' }}>
+                <div className="card ph-home__ongoing">
+                  <div className="assets-image"
+                    style={{
+                      'background': 'url('+ url +') no-repeat center center',
+                      'backgroundSize': 'cover',
+                      'backgroundPosition': 'top'}}
+                  />
+                  <div className="ongoing-container">
+                    <p className="price u-bold">Rp { a.start_price }</p>
+                    <div className="location">
+                      <img src={ic_location} style={{ marginRight: '8px' }} />
+                      { a.city }
+                    </div>
+                    <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
                   </div>
-                  <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
                 </div>
               </div>
-            </div>
-          )
-
-          remainingRunningAssets.push(obj)
-        }
-      })
-
-      result.push(
-        <Slider {...sliderSettings}>
-          { remainingRunningAssets }
-        </Slider>
-      )
+            )
+  
+            remainingRunningAssets.push(obj)
+          }
+        })
+  
+        result.push(
+          <Slider {...sliderSettings}>
+            { remainingRunningAssets }
+          </Slider>
+        ) 
+      }
     }
     return (
       result

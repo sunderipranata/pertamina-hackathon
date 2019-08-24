@@ -24,8 +24,9 @@ import Table from "components/Table/Table.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardBody from "components/Card/CardBody.jsx";
+import Button from "components/CustomButtons/Button.jsx";
 
-import assetService from '../../services/AssetService'
+import assetService from "../../services/AssetService";
 
 const styles = {
   cardCategoryWhite: {
@@ -57,42 +58,50 @@ const styles = {
   }
 };
 
-const tableHeader = ["ID", "Scheme", "Name", "City", "Start Price", "Start Time", "End Time"]
+const tableHeader = [
+  "ID",
+  "Scheme",
+  "Name",
+  "City",
+  "Start Price",
+  "Start Time",
+  "End Time"
+];
 
 class AssetList extends React.Component {
   constructor(props) {
-    super()
+    super();
     this.state = {
       tableData: [],
       classes: props.classes
-    }
+    };
   }
 
   formatDataTable(data) {
-    let res = []
-    data.forEach((d) => {
-      let result = []
-      result.push(d['id'])
-      result.push(d['scheme'])
-      result.push(d['name'])
-      result.push(d['city'])
-      result.push(d['start_price'])
-      result.push(d['start_time'])
-      result.push(d['end_time'])
-  
-      res.push(result)
-    })
-    return res
+    let res = [];
+    data.forEach(d => {
+      let result = [];
+      result.push(d["id"]);
+      result.push(d["scheme"]);
+      result.push(d["name"]);
+      result.push(d["city"]);
+      result.push(d["start_price"]);
+      result.push(d["start_time"]);
+      result.push(d["end_time"]);
+
+      res.push(result);
+    });
+
+    return res;
   }
 
   componentDidMount() {
     //api call
-    assetService.getAllAssets((result) => {
+    assetService.getAllAssets(result => {
       if (result.success) {
-        console.log('res2', result.data)
         this.setState({
           tableData: this.formatDataTable(result.data.data)
-        })
+        });
       }
     });
   }
@@ -103,16 +112,16 @@ class AssetList extends React.Component {
         <GridItem xs={12} sm={12} md={12}>
           <Card>
             <CardHeader color="success">
-              <h4 className={this.state.classes.cardTitleWhite}>Assets</h4>
-              <p className={this.state.classes.cardCategoryWhite}>
-                Aset-aset
-              </p>
+              <h4 className={this.state.classes.cardTitleWhite}>Daftar Aset</h4>
             </CardHeader>
             <CardBody>
+              <a href="/admin/new-asset">
+                <Button color="primary">Tambah Aset</Button>
+              </a>
               <Table
                 tableHeaderColor="primary"
-                tableHead={ tableHeader }
-                tableData={ this.state.tableData }
+                tableHead={tableHeader}
+                tableData={this.state.tableData}
               />
             </CardBody>
           </Card>
@@ -121,5 +130,9 @@ class AssetList extends React.Component {
     );
   }
 }
+
+AssetList.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(AssetList);

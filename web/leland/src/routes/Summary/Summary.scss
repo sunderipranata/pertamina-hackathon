@@ -1,0 +1,56 @@
+@import "../../styles/colors.scss";
+
+.ph-summary {
+  h1 {
+    font-size: 22px;
+    margin: 8px 0 4px;
+  }
+
+  .desc {
+    font-size: 14px;
+  }
+
+  .desc-light {
+    font-size: 11px;
+    color: $color-black-light;
+  }
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+
+  &__content {
+    animation: display 0.4s ease-in 0s forwards;
+  }
+
+  table {
+    width: 100%;
+
+    td {
+      &:first-child {
+        font-size: 12px;
+        color: $color-black-light;
+      }
+      &:nth-child(2) {
+        font-size: 14px;
+        color: $color-black;
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@keyframes display {
+  from {
+    opacity: 0;
+    transform: translateY(48px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
