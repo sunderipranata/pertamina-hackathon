@@ -84,11 +84,12 @@ class Home extends Component {
         if(i > 0) {
           let isLand = a.type == 'TANAH' ? true : false
           let url
-          if(i == 1)
+          let mod = i % 3
+          if(mod == 0)
             url = sample_tanah_1
-          if(i == 2)
+          if(mod == 1)
             url = sample_tanah_2
-          if(i == 3)
+          if(mod == 2)
             url = sample_tanah_3
           let obj = (
             <div style={{ 'width': '200px' }}>
