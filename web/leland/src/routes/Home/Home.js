@@ -8,6 +8,8 @@ import suit_for_cafe from './assets/suit-for-cafe.png'
 import suit_for_gudang from './assets/suit-for-gudang.png'
 import suit_for_kantor from './assets/suit-for-kantor.png'
 import suit_for_kebun from './assets/suit-for-kebun.png'
+import suit_for_restoran from './assets/suit-for-restoran.jpg'
+import suit_for_parkir from './assets/suit-for-parkir.jpg'
 import ic_location from '../../assets/ic-location.svg'
 
 import sample_tanah_1 from './assets/sample-tanah-1.jpg'
@@ -33,45 +35,94 @@ class Home extends Component {
   constructor(props) {
     super()
     this.state = {
-
+      runningAssets: []
     }
   }
 
   componentDidMount() {
-    window.addEventListener("touchstart", this.touchStart);
-    window.addEventListener("touchmove", this.preventTouch, { passive: false });
-
-    assetService.getAllAssets((result) => {
+    assetService.getRunningAssets((result) => {
       if (result.success) {
-        console.log('res2', result)
+        console.log('result', result.data.data)
+        this.setState({
+          runningAssets: result.data.data
+        })
       }
     });
   }
 
-  componentWillUnmount() {
-    window.removeEventListener("touchstart", this.touchStart);
-    window.removeEventListener("touchmove", this.preventTouch, {
-      passive: false
-    });
-  }
+  renderRunningAssets() {
+    let { runningAssets } = this.state
+    let result = []
 
-  touchStart = (e) => {
-    this.firstClientX = e.touches[0].clientX;
-    this.firstClientY = e.touches[0].clientY;
-  }
+    if(runningAssets.length > 0) {
+      let firstRunningAsset = runningAssets.length > 0 ? runningAssets[0] : null
+      result.push(
+        <section name="section-popular" className="container">
+          <h2>Aset populer</h2>
+          <CardAssets
+            title= { firstRunningAsset.name }
+            type= { firstRunningAsset.type }
+            location= { firstRunningAsset.city }
+            area={ firstRunningAsset.type == 'TANAH' ? firstRunningAsset.land_area : firstRunningAsset.building_area }
+            bidders={ 101 }
+            suit= { firstRunningAsset.category } 
+            price={ firstRunningAsset.start_price }
+          />
+        </section>
+      )
 
-  preventTouch = (e) => {
-    const minValue = 5; // threshold
+      result.push(
+        <section name="section-suit-fot" className="container">
+          <h2 className="u-m0">Lelang lainnya</h2>
+        </section>
+      )
 
-    this.clientX = e.touches[0].clientX - this.firstClientX;
-    this.clientY = e.touches[0].clientY - this.firstClientY;
+      let remainingRunningAssets = []
+      runningAssets.forEach((a, i) => {
+        console.log('i', i)
+        if(i > 0) {
+          let isLand = a.type == 'TANAH' ? true : false
+          let url
+          if(i == 1)
+            url = sample_tanah_1
+          if(i == 2)
+            url = sample_tanah_2
+          if(i == 3)
+            url = sample_tanah_3
+          let obj = (
+            <div style={{ 'width': '200px' }}>
+              <div className="card ph-home__ongoing">
+                <div className="assets-image"
+                  style={{
+                    'background': 'url('+ url +') no-repeat center center',
+                    'backgroundSize': 'cover',
+                    'backgroundPosition': 'top'}}
+                />
+                <div className="ongoing-container">
+                  <p className="price u-bold">Rp { a.start_price }</p>
+                  <div className="location">
+                    <img src={ic_location} style={{ marginRight: '8px' }} />
+                    { a.city }
+                  </div>
+                  <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
+                </div>
+              </div>
+            </div>
+          )
 
-    // Vertical scrolling does not work when you start swiping horizontally.
-    if (Math.abs(this.clientX) > minValue) {
-      e.preventDefault();
-      e.returnValue = false;
-      return false;
+          remainingRunningAssets.push(obj)
+        }
+      })
+
+      result.push(
+        <Slider {...sliderSettings}>
+          { remainingRunningAssets }
+        </Slider>
+      )
     }
+    return (
+      result
+    )
   }
 
   render() {
@@ -79,7 +130,7 @@ class Home extends Component {
       <Fragment>
         <div className="ph-home__wrapper">
           <div className="ph-home__bg" />
-          <section name="section-search" className="container">
+          <section name="section-search" className="container" style={{ marginTop: '24px' }}>
             <input name="search" className="search" placeholder="Cari Lokasi" />
           </section>
           <section name="section-category" className="container">
@@ -98,115 +149,53 @@ class Home extends Component {
           <section name="section-suit-fot" className="container">
             <h2 className="u-m0">Aset cocok untuk</h2>
           </section>
-          <Slider {...sliderSettings}>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_cafe + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Kafe</p>
-              </div>
+          <div className="overflow-x-scroll">
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_cafe + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Kafe</p>
             </div>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_kebun + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Kebun</p>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_kebun + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Kebun</p>
             </div>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_gudang + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Gudang</p>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_gudang + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Gudang</p>
             </div>
-            <div style={{ 'width': '106px' }}>
-              <div className="ph-home__suit-for"
-                style={{
-                  'background': 'url(' + suit_for_kantor + ') no-repeat center center',
-                  'backgroundSize': 'cover'
-                }}>
-                <p className="text u-m0 u-right">Kantor</p>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_kantor + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Kantor</p>
             </div>
-          </Slider>
-          <section name="section-popular" className="container">
-            <h2>Aset popular</h2>
-            <CardAssets
-              title="Tanah Lokasi Strategis"
-              type="Tanah"
-              location="Bekasi"
-              area={2000}
-              bidders={500}
-              suit="Cafe, Toko"
-              price={800000000}
-            />
-          </section>
-          <section name="section-suit-fot" className="container">
-            <h2 className="u-m0">Lelang lainnya</h2>
-          </section>
-          <Slider {...sliderSettings}>
-            <div style={{ 'width': '200px' }}>
-              <div className="card ph-home__ongoing">
-                <div className="assets-image"
-                  style={{
-                    'background': 'url(' + sample_tanah_1 + ') no-repeat center center',
-                    'backgroundSize': 'cover',
-                    'backgroundPosition': 'top'}}
-                />
-                <div className="ongoing-container">
-                  <p className="price u-bold">Rp1.000.000.000</p>
-                  <div className="location">
-                    <img src={ic_location} style={{ marginRight: '8px' }} />
-                    Tangerang
-                  </div>
-                  <p className="area u-m0">Luas Tanah: 2.000 m<sup>2</sup></p>
-                </div>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_restoran + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Restoran</p>
             </div>
-            <div style={{ 'width': '200px' }}>
-              <div className="card ph-home__ongoing">
-                <div className="assets-image"
-                  style={{
-                    'background': 'url(' + sample_tanah_2 + ') no-repeat center center',
-                    'backgroundSize': 'cover',
-                    'backgroundPosition': 'top'}}
-                />
-                <div className="ongoing-container">
-                  <p className="price u-bold">Rp500.000.000</p>
-                  <div className="location">
-                    <img src={ic_location} style={{ marginRight: '8px' }} />
-                    Depok
-                  </div>
-                  <p className="area u-m0">Luas Tanah: 3.000 m<sup>2</sup></p>
-                </div>
-              </div>
+            <div className="ph-home__suit-for"
+              style={{
+                'background': 'url(' + suit_for_parkir + ') no-repeat center center',
+                'backgroundSize': 'cover'
+              }}>
+              <p className="text u-m0 u-right">Parkir</p>
             </div>
-            <div style={{ 'width': '200px' }}>
-              <div className="card ph-home__ongoing">
-                <div className="assets-image"
-                  style={{
-                    'background': 'url(' + sample_tanah_3 + ') no-repeat center center',
-                    'backgroundSize': 'cover',
-                    'backgroundPosition': 'top'}}
-                />
-                <div className="ongoing-container">
-                  <p className="price u-bold">Rp700.000.000</p>
-                  <div className="location">
-                    <img src={ic_location} style={{ marginRight: '8px' }} />
-                    Bekasi Utara
-                  </div>
-                  <p className="area u-m0">Luas Tanah: 4.000 m<sup>2</sup></p>
-                </div>
-              </div>
-            </div>
-          </Slider>
+          </div>
+          
+          { this.renderRunningAssets() }
+
         </div>
       </Fragment>
     )
