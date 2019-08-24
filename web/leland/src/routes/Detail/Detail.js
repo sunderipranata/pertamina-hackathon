@@ -17,6 +17,8 @@ import { thousandSeparator } from '../../utils/currency'
 import assetService from '../../services/AssetService'
 import bidService from '../../services/BidService'
 
+import { withRouter } from 'react-router-dom'
+
 import './Detail.scss'
 
 class Detail extends Component {
@@ -75,10 +77,13 @@ class Detail extends Component {
     }
 
     bidService.placeBid(payload, (result) => {
+      console.log('result eee', result)
       if (result.success) {
         console.log('result', result)
 
         //redirect
+        let url = '/summary/' + parseInt(bidValue)
+        this.props.history.push(url)
       }
     });
   }
@@ -297,4 +302,4 @@ class Detail extends Component {
   }
 }
 
-export default Detail
+export default withRouter(Detail)
