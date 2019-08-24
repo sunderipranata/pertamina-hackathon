@@ -10,6 +10,7 @@ import ic_location from '../../assets/ic-location.svg'
 import ic_time from '../../assets/ic-time.svg'
 import Countdown from '../../components/Countdown'
 import BottomSheet from '../../components/BottomSheet'
+import Navbar from '../../components/Navbar'
 
 import { thousandSeparator } from '../../utils/currency'
 
@@ -23,6 +24,10 @@ class Detail extends Component {
       activeImage: sample_tanah_1,
       showInputBidPrice: false
     }
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0)
   }
 
   handleChangeActive = (activeImage) => {
@@ -40,11 +45,12 @@ class Detail extends Component {
 
     return (
       <Fragment>
+        <Navbar title="Detail" onBack="/" />
         <div className="ph-detail__container">
           <section name="thumbnail">
             <div className="ph-detail__image"
                 style={{
-                  'background': 'url(' + activeImage + ') no-repeat center center / cover'}}
+              'background': 'url(' + activeImage + ') no-repeat center center / cover'}}
             />
             <div className="ph-detail__gallery">
               <div className={ClassNames('ph-detail__gallery--item', {

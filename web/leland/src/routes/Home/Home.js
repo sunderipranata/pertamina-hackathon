@@ -40,6 +40,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
+    window.scrollTo(0, 0)
     assetService.getRunningAssets((result) => {
       if (result.success) {
         console.log('result', result.data.data)
