@@ -53,4 +53,35 @@
       position: absolute;
     }
   }
+
+  &__ongoing {
+    margin-left: 16px;
+    margin-bottom: 16px;
+    color: $color-black;
+
+    .assets-image {
+      position: relative;
+      height: 100px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .ongoing-container {
+      padding: 8px;
+
+      .price {
+        font-size: 14px;
+        margin: 0 0 8px;
+      }
+
+      .location {
+        display: flex;
+        font-size: 12px;
+      }
+
+      .area {
+        font-size: 12px;
+      }
+    }
+  }
 }
