@@ -1,15 +1,13 @@
 import request from 'superagent'
 
-const baseUrl = 'https://jsonplaceholder.typicode.com/todos/1'
-// const baseUrl = ''
-const getAssetPath = '/asset/:id'
+const baseUrl = 'http://10.50.0.68:1234'
+const getAllAssetsPath = '/assets'
 let assetService = {};
 
-assetService.getAssets = function (assetId, callback) {
+assetService.getAllAssets = function (callback) {
 
   request
-  // .get(baseUrl + getAssetsByAssetId(assetId))
-    .get(baseUrl)
+    .get(baseUrl + getAllAssetsPath)
     .end(function (err, res) {
       let result = {
         success: '',
@@ -26,13 +24,6 @@ assetService.getAssets = function (assetId, callback) {
 
       callback(result)
     });
-}
-
-let getAssetsByAssetId = function (assetId) {
-  if(assetId !== null)
-    return getAssetPath + assetId
-  else
-    return getAssetPath
 }
 
 export default assetService
