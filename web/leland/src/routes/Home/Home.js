@@ -30,11 +30,18 @@ const sliderSettings = {
 }
 
 class Home extends Component {
+  constructor(props) {
+    super()
+    this.state = {
+
+    }
+  }
+
   componentDidMount() {
     window.addEventListener("touchstart", this.touchStart);
     window.addEventListener("touchmove", this.preventTouch, { passive: false });
 
-    assetService.getAssets(null, (result) => {
+    assetService.getAllAssets((result) => {
       if (result.success) {
         console.log('res2', result)
       }
