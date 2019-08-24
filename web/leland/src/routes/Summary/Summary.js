@@ -16,9 +16,12 @@ class Summary extends Component {
             <div className="u-center">
               <img src={ic_success} width="100px" />
               <h1>Selamat Kevin!</h1>
-              <p className="desc u-mt0">Penawaran harga Anda sudah terpasang</p>
+              <p className="desc u-m0">Penawaran harga Anda sudah terpasang.</p>
+              <p className="desc-light u-mt0">
+                Jika Anda menang, pihak Pertamina akan menghubungi Anda untuk proses selanjutnya.
+              </p>
             </div>
-            <div className="card container">
+            <div className="card container" style={{ marginTop: '16px' }}>
               <table>
                 <tbody>
                   <tr>
