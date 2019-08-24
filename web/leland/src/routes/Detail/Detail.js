@@ -70,7 +70,7 @@ class Detail extends Component {
     let { assetDetail, bidValue } = this.state
     let payload = {
       user_id: 1,
-      assset_id: assetDetail.id,
+      asset_id: assetDetail.id,
       bid_price: parseInt(bidValue)
     }
 
