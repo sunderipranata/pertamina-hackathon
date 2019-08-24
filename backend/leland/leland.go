@@ -15,8 +15,9 @@ type Database interface {
 	UpdateAsset(string, Asset) error
 	// DeleteAsset(string) error
 
-	// InsertAuction(Auction) error
-	// GetAuctions() ([]Auction, error)
+	InsertAuction(Auction) error
+	GetAuctions(string) ([]Auction, error)
+	GetAuction(string) (Auction, error)
 }
 
 // Connection is a struct for required third party service.
