@@ -33,7 +33,7 @@ class Home extends Component {
   constructor(props) {
     super()
     this.state = {
-
+      runningAssets: []
     }
   }
 
@@ -41,9 +41,12 @@ class Home extends Component {
     window.addEventListener("touchstart", this.touchStart);
     window.addEventListener("touchmove", this.preventTouch, { passive: false });
 
-    assetService.getAllAssets((result) => {
+    assetService.getRunningAssets((result) => {
       if (result.success) {
-        console.log('res2', result)
+        console.log('result', result.data.data)
+        this.setState({
+          runningAssets: result.data.data
+        })
       }
     });
   }
