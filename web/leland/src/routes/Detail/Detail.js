@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import ClassNames from 'classnames'
+import NumberFormat from 'react-number-format'
 
 import sample_tanah_1 from './assets/sample-tanah-1.jpg'
 import sample_tanah_2 from './assets/sample-tanah-2.jpg'
@@ -8,6 +9,7 @@ import sample_tanah_4 from './assets/sample-tanah-4.jpg'
 import ic_location from '../../assets/ic-location.svg'
 import ic_time from '../../assets/ic-time.svg'
 import Countdown from '../../components/Countdown'
+import BottomSheet from '../../components/BottomSheet'
 
 import { thousandSeparator } from '../../utils/currency'
 
@@ -18,12 +20,17 @@ class Detail extends Component {
     super(props)
 
     this.state = {
-      activeImage: sample_tanah_1
+      activeImage: sample_tanah_1,
+      showInputBidPrice: false
     }
   }
 
   handleChangeActive = (activeImage) => {
     this.setState({ activeImage })
+  }
+
+  toggleBidPrice = () => {
+    this.setState({ showInputBidPrice: !this.state.showInputBidPrice })
   }
 
   render() {
@@ -186,10 +193,27 @@ class Detail extends Component {
               <p className="label--amount u-bold u-m0">Rp{thousandSeparator(800000000)}</p>
             </div>
             <div>
-              <a className="button button--main">Tawar</a>
+              <a onClick={this.toggleBidPrice} className="button button--main">Tawar</a>
             </div>
           </div>
         </div>
+        <BottomSheet title="Tawar Harga"
+          onClose={this.toggleBidPrice}
+          display={this.state.showInputBidPrice}
+        >
+          <label className="label" style={{ display: 'block', marginBottom: '8px' }}>Harga Penawaran Anda</label>
+          <div className="input-container">
+            <span>Rp</span>
+            <NumberFormat
+              className='input-price'
+              name='bid-price'
+              allowNegative={false}
+              placeholder='1.000.000.000'
+              thousandSeparator={'.'}
+              decimalSeparator={','} />
+          </div>
+          <button className="button button--main">Tawar Harga</button>
+        </BottomSheet>
       </Fragment>
     )
   }
