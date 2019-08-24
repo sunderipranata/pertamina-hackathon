@@ -1,0 +1,39 @@
+import React, { Component, Fragment } from 'react'
+
+import Navbar from '../../components/Navbar'
+
+import './Summary.scss'
+import { thousandSeparator } from '../../utils/currency'
+import ic_success from './assets/ic-checklist.png'
+
+class Summary extends Component {
+  render() {
+    return (
+      <Fragment>
+        <Navbar title="Ringkasan" />
+        <div className="ph-summary">
+          <div className="ph-summary__content">
+            <div className="u-center">
+              <img src={ic_success} width="100px" />
+              <h1>Selamat Kevin!</h1>
+              <p className="desc u-mt0">Penawaran harga Anda sudah terpasang</p>
+            </div>
+            <div className="card container">
+              <table>
+                <tbody>
+                  <tr>
+                    <td>Harga Penawaran Anda</td>
+                    <td className="u-right">Rp{thousandSeparator(800000000)}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <a style={{marginTop: '16px'}} href="/" className="button button--ghost">Oke</a>
+          </div>
+        </div>
+      </Fragment>
+    )
+  }
+}
+
+export default Summary

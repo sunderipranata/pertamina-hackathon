@@ -3,8 +3,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import Home from './routes/Home'
 import Detail from './routes/Detail'
+import Summary from './routes/Summary'
 
-import { DETAIL_PATH } from './url'
+import { DETAIL_PATH, SUMMARY_PATH } from './url'
 
 import './App.scss'
 
@@ -14,6 +15,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path={DETAIL_PATH} component={Detail} />
+        <Route exact path={SUMMARY_PATH} component={Summary} />
       </Switch>
     </Router>
   );

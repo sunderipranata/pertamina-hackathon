@@ -45,7 +45,7 @@ class Detail extends Component {
 
     return (
       <Fragment>
-        <Navbar title="Detail" onBack="/" />
+        <Navbar title="Detail" />
         <div className="ph-detail__container">
           <section name="thumbnail">
             <div className="ph-detail__image"
