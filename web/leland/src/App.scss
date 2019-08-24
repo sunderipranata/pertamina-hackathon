@@ -54,6 +54,10 @@ a {
   margin-top: 0;
 }
 
+.u-mt1 {
+  margin-top: 16px;
+}
+
 .u-mb0 {
   margin-bottom: 0;
 }
@@ -78,6 +82,14 @@ a {
 
 .u-block {
   display: block;
+}
+
+.u-flex {
+  display: flex;
+}
+
+.u-items-center {
+  align-items: center;
 }
 
 .search {
@@ -146,4 +158,9 @@ a {
       transform: translateY(-1px);
     }
   }
+}
+
+.seperator {
+  border: 0;
+  border-bottom: 8px solid rgba(224, 224, 224, 0.6);
 }

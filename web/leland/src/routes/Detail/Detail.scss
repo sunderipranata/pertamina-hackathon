@@ -1,0 +1,129 @@
+@import "../../styles/colors.scss";
+
+.ph-detail {
+  &__col-2 {
+    display: grid;
+    grid-gap: 16px;
+    grid-template-columns: repeat(2,1fr);
+  }
+
+  &__container {
+    margin-bottom: 80px;
+
+    h1 {
+      font-size: 20px;
+      color: $color-black;
+    }
+
+    h2 {
+      font-size: 16px;
+      color: $color-black;
+    }
+
+    .label {
+      &--main {
+        font-size: 12px;
+        color: $color-black;
+      }
+      &--sub {
+        font-size: 12px;
+        color: $color-black-light;
+      }
+      &--disabled {
+        font-size: 12px;
+        color: $color-black-lighter;
+        letter-spacing: 0.1px;
+
+        strong {
+          color: $color-black;
+          font-size: 14px;
+        }
+      }
+      &--md {
+        font-size: 14px;
+        color: $color-black;
+      }
+    }
+
+    .nearby__counter {
+      list-style: none;
+      padding-inline-start: 32px;
+
+      li {
+        counter-increment: item;
+        display: flex;
+        margin-bottom: 12px;
+
+        &:before {
+          font-size: 12px;
+          content: counter(item);
+          background-color: #829CD0;
+          border-radius: 100%;
+          width: 20px;
+          height: 20px;
+          color: #FFFFFF;
+          text-align: center;
+          display: inline-block;
+          margin: 0 12px 0 -32px;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    table {
+      width: 100%;
+    }
+  }
+
+  &__image {
+    height: 235px;
+  }
+
+  &__gallery {
+    display: grid;
+    grid-gap: 4px;
+    grid-template-columns: repeat(4,1fr);
+    margin-top: 4px;
+
+    &--item {
+      height: 70px;
+      position: relative;
+
+      &.active {
+        &:after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0px;
+          left: 0px;
+          opacity: 1;
+          background: url("../../assets/ic-check.svg") center center no-repeat rgba(0, 0, 0, 0.3);
+          background-repeat: no-repeat;
+          background-position: center center;
+        }
+      }
+    }
+  }
+
+  &__cta {
+    position: fixed;
+    box-shadow: rgba(49, 53, 59, 0.12) 0px 1px 6px 0px;
+    padding: 16px;
+    bottom: 0;
+    width: 100%;
+    background: $color-white;
+    box-sizing: border-box;
+
+    .label {
+      &--amount {
+        font-size: 16px;
+        color: $color-black;
+      }
+      &--title {
+        font-size: 12px;
+        color: $color-black;
+      }
+    }
+  }
+}

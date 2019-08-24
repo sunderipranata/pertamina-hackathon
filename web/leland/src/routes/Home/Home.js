@@ -16,7 +16,7 @@ import sample_tanah_3 from './assets/sample-tanah-3.jpg'
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import CardAssets from '../../components/CardAssets/CardAssets'
+import CardAssets from '../../components/CardAssets'
 import assetService from '../../services/AssetService'
 
 const sliderSettings = {
