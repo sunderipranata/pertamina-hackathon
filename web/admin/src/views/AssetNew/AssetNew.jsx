@@ -20,7 +20,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
-import InputLabel from "@material-ui/core/InputLabel";
+// import InputLabel from "@material-ui/core/InputLabel";
 // core components
 import GridItem from "components/Grid/GridItem.jsx";
 import GridContainer from "components/Grid/GridContainer.jsx";
@@ -28,11 +28,12 @@ import CustomInput from "components/CustomInput/CustomInput.jsx";
 import Button from "components/CustomButtons/Button.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
-import CardAvatar from "components/Card/CardAvatar.jsx";
+// import CardAvatar from "components/Card/CardAvatar.jsx";
 import CardBody from "components/Card/CardBody.jsx";
 import CardFooter from "components/Card/CardFooter.jsx";
+import { textAlign } from "@material-ui/system";
 
-import avatar from "assets/img/faces/marc.jpg";
+// import avatar from "assets/img/faces/marc.jpg";
 
 const styles = {
   cardCategoryWhite: {
@@ -61,36 +62,23 @@ function UserProfile(props) {
         <GridItem xs={12} sm={12} md={8}>
           <Card>
             <CardHeader color="primary">
-              <h4 className={classes.cardTitleWhite}>Edit Profile</h4>
-              <p className={classes.cardCategoryWhite}>Complete your profile</p>
+              <h4 className={classes.cardTitleWhite}>Tambah Aset Baru</h4>
             </CardHeader>
             <CardBody>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={5}>
+                <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Company (disabled)"
-                    id="company-disabled"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      disabled: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={3}>
-                  <CustomInput
-                    labelText="Username"
-                    id="username"
+                    labelText="Nama Aset"
+                    id="asset-name"
                     formControlProps={{
                       fullWidth: true
                     }}
                   />
                 </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
+                <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Email address"
-                    id="email-address"
+                    labelText="Sewa/Jual"
+                    id="scheme"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -100,8 +88,8 @@ function UserProfile(props) {
               <GridContainer>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="First Name"
-                    id="first-name"
+                    labelText="Tipe Aset"
+                    id="type"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -109,37 +97,8 @@ function UserProfile(props) {
                 </GridItem>
                 <GridItem xs={12} sm={12} md={6}>
                   <CustomInput
-                    labelText="Last Name"
-                    id="last-name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-              </GridContainer>
-              <GridContainer>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="City"
-                    id="city"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Country"
-                    id="country"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={4}>
-                  <CustomInput
-                    labelText="Postal Code"
-                    id="postal-code"
+                    labelText="Aset cocok untuk"
+                    id="category"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -148,10 +107,9 @@ function UserProfile(props) {
               </GridContainer>
               <GridContainer>
                 <GridItem xs={12} sm={12} md={12}>
-                  <InputLabel style={{ color: "#AAAAAA" }}>About me</InputLabel>
                   <CustomInput
-                    labelText="Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo."
-                    id="about-me"
+                    labelText="Alamat"
+                    id="address"
                     formControlProps={{
                       fullWidth: true
                     }}
@@ -162,32 +120,123 @@ function UserProfile(props) {
                   />
                 </GridItem>
               </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <CustomInput
+                    labelText="Ukuran Tanah"
+                    id="area-land"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={6}>
+                  <CustomInput
+                    labelText="Ukuran Bangunan"
+                    id="area-building"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <CustomInput
+                    labelText="Tipe Sertifikat"
+                    id="certificate"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={6}>
+                  <CustomInput
+                    labelText="Informasi Kontak"
+                    id="contact-information"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={6}>
+                  <CustomInput
+                    labelText="Tanggal Lelang Dimulai"
+                    id="start-date"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+                <GridItem xs={12} sm={12} md={6}>
+                  <CustomInput
+                    labelText="Tanggal Lelang Berakhir"
+                    id="end-date"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
+              <GridContainer>
+                <GridItem xs={12} sm={12} md={12}>
+                  <CustomInput
+                    labelText="Harga Awal"
+                    id="start-price"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                  />
+                </GridItem>
+              </GridContainer>
             </CardBody>
             <CardFooter>
-              <Button color="primary">Update Profile</Button>
+              <Button color="primary">Tambah Aset</Button>
             </CardFooter>
           </Card>
         </GridItem>
         <GridItem xs={12} sm={12} md={4}>
-          <Card profile>
-            <CardAvatar profile>
-              <a href="#pablo" onClick={e => e.preventDefault()}>
-                <img src={avatar} alt="..." />
-              </a>
-            </CardAvatar>
-            <CardBody profile>
-              <h6 className={classes.cardCategory}>CEO / CO-FOUNDER</h6>
-              <h4 className={classes.cardTitle}>Alec Thompson</h4>
-              <p className={classes.description}>
-                Don{"'"}t be scared of the truth because we need to restart the
-                human foundation in truth And I love you like Kanye loves Kanye
-                I love Rick Owens’ bed design but the back is...
-              </p>
-              <Button color="primary" round>
-                Follow
-              </Button>
-            </CardBody>
-          </Card>
+          <div style={{ position: "sticky", top: "32px" }}>
+            <Card profile>
+              {/* <CardAvatar profile>
+                <a href="#pablo" onClick={e => e.preventDefault()}>
+                  <img src={avatar} alt="..." />
+                </a>
+              </CardAvatar> */}
+              <CardBody profile>
+                <h4 style={{ marginTop: 0 }} className={classes.cardTitle}>
+                  Rekomendasi
+                </h4>
+                <div
+                  style={{
+                    display: "grid",
+                    gridGap: "16px",
+                    gridTemplateColumns: "repeat(2,1fr)",
+                    textAlign: "left"
+                  }}
+                >
+                  <p className={classes.description}>Harga</p>
+                  <p className={classes.description}>Rp800.000.000</p>
+                </div>
+                <div
+                  style={{
+                    display: "grid",
+                    gridGap: "16px",
+                    gridTemplateColumns: "repeat(2,1fr)",
+                    textAlign: "left"
+                  }}
+                >
+                  <p className={classes.description}>Kategori</p>
+                  <p className={classes.description}>Kafe, Restoran</p>
+                </div>
+                <Button color="primary" round style={{ marginTop: "24px" }}>
+                  Gunakan Rekomendasi
+                </Button>
+              </CardBody>
+            </Card>
+          </div>
         </GridItem>
       </GridContainer>
     </div>

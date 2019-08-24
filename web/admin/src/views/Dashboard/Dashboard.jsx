@@ -25,7 +25,7 @@ import withStyles from "@material-ui/core/styles/withStyles";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Store from "@material-ui/icons/Store";
-import Warning from "@material-ui/icons/Warning";
+// import Warning from "@material-ui/icons/Warning";
 import DateRange from "@material-ui/icons/DateRange";
 import LocalOffer from "@material-ui/icons/LocalOffer";
 import Update from "@material-ui/icons/Update";
@@ -41,7 +41,7 @@ import GridContainer from "components/Grid/GridContainer.jsx";
 import Table from "components/Table/Table.jsx";
 import Tasks from "components/Tasks/Tasks.jsx";
 import CustomTabs from "components/CustomTabs/CustomTabs.jsx";
-import Danger from "components/Typography/Danger.jsx";
+// import Danger from "components/Typography/Danger.jsx";
 import Card from "components/Card/Card.jsx";
 import CardHeader from "components/Card/CardHeader.jsx";
 import CardIcon from "components/Card/CardIcon.jsx";
@@ -78,20 +78,23 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="warning" stats icon>
                 <CardIcon color="warning">
-                  <Icon>content_copy</Icon>
+                  <Icon
+                    style={{
+                      width: "17px",
+                      height: "17px",
+                      fontSize: "17px",
+                      lineHeight: "17px"
+                    }}
+                  >
+                    content_copy
+                  </Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Jumlah Aset</p>
-                <h3 className={classes.cardTitle}>
-                  49/50
-                </h3>
+                <h3 className={classes.cardTitle}>49/50</h3>
               </CardHeader>
               <CardFooter stats>
-                <div className={classes.stats}>
-                  Aset Tanah: 30
-                </div>
-                <div className={classes.stats}>
-                  Aset Bangunan: 20
-                </div>
+                <div className={classes.stats}>Aset Tanah: 30</div>
+                <div className={classes.stats}>Aset Bangunan: 20</div>
               </CardFooter>
               {/* <CardFooter stats>
                 <div className={classes.stats}>
@@ -109,15 +112,16 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="success" stats icon>
                 <CardIcon color="success">
-                  <Store />
+                  <Store
+                    style={{ width: "17px", height: "17px", margin: "0" }}
+                  />
                 </CardIcon>
                 <p className={classes.cardCategory}>Pendapatan</p>
-                <h3 className={classes.cardTitle}>Rp. 10,123,456,789</h3>
+                <h3 className={classes.cardTitle}>Rp10.123.456.789</h3>
               </CardHeader>
               <CardFooter stats>
                 <div className={classes.stats}>
-                  <DateRange />
-                  1 Bulan Terakhir
+                  <DateRange />1 Bulan Terakhir
                 </div>
               </CardFooter>
             </Card>
@@ -126,7 +130,16 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="danger" stats icon>
                 <CardIcon color="danger">
-                  <Icon>info_outline</Icon>
+                  <Icon
+                    style={{
+                      width: "17px",
+                      height: "17px",
+                      fontSize: "17px",
+                      lineHeight: "17px"
+                    }}
+                  >
+                    info_outline
+                  </Icon>
                 </CardIcon>
                 <p className={classes.cardCategory}>Lelang aktif</p>
                 <h3 className={classes.cardTitle}>3</h3>
@@ -143,7 +156,9 @@ class Dashboard extends React.Component {
             <Card>
               <CardHeader color="info" stats icon>
                 <CardIcon color="info">
-                  <Accessibility />
+                  <Accessibility
+                    style={{ width: "17px", height: "17px", margin: "0" }}
+                  />
                 </CardIcon>
                 <p className={classes.cardCategory}>Jumlah Pembeli</p>
                 <h3 className={classes.cardTitle}>1200</h3>
