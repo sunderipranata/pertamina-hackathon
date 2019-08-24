@@ -19,7 +19,7 @@ assetService.getAllAssets = function (callback) {
         result.success = false
       } else {
         result.success = true
-        result.data = res
+        result.data = res.body
       }
 
       callback(result)
