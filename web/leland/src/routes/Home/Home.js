@@ -35,14 +35,17 @@ class Home extends Component {
   constructor(props) {
     super()
     this.state = {
-
+      runningAssets: []
     }
   }
 
   componentDidMount() {
-    assetService.getAllAssets((result) => {
+    assetService.getRunningAssets((result) => {
       if (result.success) {
-        console.log('res2', result)
+        console.log('result', result.data.data)
+        this.setState({
+          runningAssets: result.data.data
+        })
       }
     });
   }
