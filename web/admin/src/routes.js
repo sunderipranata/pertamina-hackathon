@@ -28,7 +28,7 @@ import Language from "@material-ui/icons/Language";
 import DashboardPage from "views/Dashboard/Dashboard.jsx";
 import UserProfile from "views/UserProfile/UserProfile.jsx";
 import AssetList from 'views/Asset/AssetList.jsx';
-import TableList from "views/TableList/TableList.jsx";
+import AuctionList from 'views/Auction/AuctionList.jsx';
 import Typography from "views/Typography/Typography.jsx";
 import Icons from "views/Icons/Icons.jsx";
 import Maps from "views/Maps/Maps.jsx";
@@ -43,54 +43,54 @@ const dashboardRoutes = [
     layout: "/admin"
   },
   {
-    path: "/user",
-    name: "User Profile",
-    icon: Person,
-    component: UserProfile,
-    layout: "/admin"
-  },
-  {
     path: "/assetList",
     name: "Asset List",
     icon: "content_paste",
     component: AssetList,
     layout: '/admin'
   },
+  {
+    path: "/auctionList",
+    name: "Auction List",
+    icon: "content_paste",
+    component: AuctionList,
+    layout: "/admin"
+  },
   // {
-  //   path: "/table",
-  //   name: "Table List",
-  //   icon: "content_paste",
-  //   component: TableList,
+  //   path: "/user",
+  //   name: "User Profile",
+  //   icon: Person,
+  //   component: UserProfile,
   //   layout: "/admin"
   // },
-  {
-    path: "/typography",
-    name: "Typography",
-    icon: LibraryBooks,
-    component: Typography,
-    layout: "/admin"
-  },
-  {
-    path: "/icons",
-    name: "Icons",
-    icon: BubbleChart,
-    component: Icons,
-    layout: "/admin"
-  },
-  {
-    path: "/maps",
-    name: "Maps",
-    icon: LocationOn,
-    component: Maps,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    icon: Notifications,
-    component: NotificationsPage,
-    layout: "/admin"
-  }
+  // {
+  //   path: "/typography",
+  //   name: "Typography",
+  //   icon: LibraryBooks,
+  //   component: Typography,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/icons",
+  //   name: "Icons",
+  //   icon: BubbleChart,
+  //   component: Icons,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/maps",
+  //   name: "Maps",
+  //   icon: LocationOn,
+  //   component: Maps,
+  //   layout: "/admin"
+  // },
+  // {
+  //   path: "/notifications",
+  //   name: "Notifications",
+  //   icon: Notifications,
+  //   component: NotificationsPage,
+  //   layout: "/admin"
+  // }
 ];
 
 export default dashboardRoutes;
