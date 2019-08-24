@@ -22,6 +22,8 @@ import "slick-carousel/slick/slick-theme.css"
 import CardAssets from '../../components/CardAssets'
 import assetService from '../../services/AssetService'
 
+import { withRouter } from 'react-router-dom'
+
 const sliderSettings = {
   autoplay: false,
   dots: false,
@@ -207,4 +209,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default withRouter(Home)

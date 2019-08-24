@@ -147,7 +147,7 @@ let provideGetByCategoryPath = function(category) {
 }
 
 let provideGetByTypePath = function(type) {
-  return getRunningAssetsPath + "?type=" + type
+  return getRunningAssetsPath + "?asset_type=" + type
 }
 
 export default assetService
