@@ -108,7 +108,7 @@ assetService.getByCategory = function(category, callback) {
         result.success = true
         result.data = res.body
       }
-
+      console.log('service get by category result', result)
       callback(result)
     })
 }
@@ -130,6 +130,7 @@ assetService.getByType = function(type, callback) {
         result.data = res.body
       }
 
+      console.log('service get by type result', result)
       callback(result)
     })
 }

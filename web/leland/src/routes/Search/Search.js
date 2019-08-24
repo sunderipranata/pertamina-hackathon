@@ -25,16 +25,28 @@ class Search extends Component {
 
   componentWillMount() {
     //get by query param
-    let category = ''
-    let type = ''
+    console.log('this propss', this.props)
+    let search = this.props.location.search
+    let splits = search.split('=')
+    let key = splits[0], value = splits[1]
+    let category = null
+    let type = null
+
+    if(key.toLowerCase().includes('type')) {
+      type = value
+    } else {
+      category = value
+    }
 
     if(category !== null) {
+      console.log('ini category')
       this.setState({
         category: category,
         type: null,
         getBy: 'CATEGORY'
       })
     } else {
+      console.log('ini type')
       this.setState({
         category: null,
         type: type,
@@ -52,16 +64,16 @@ class Search extends Component {
         if (result.success) {
           console.log('result', result.data.data)
           this.setState({
-            assetDetails: result.data.data
+            assetDetails: result.data.data == null ? [] : result.data.data
           })
         }
       });
     } else {
-      assetService.getByTye(type, (result) => {
+      assetService.getByType(type, (result) => {
         if (result.success) {
           console.log('result', result.data.data)
           this.setState({
-            assetDetails: result.data.data
+            assetDetails: result.data.data == null ? [] : result.data.data
           })
         }
       });
@@ -95,9 +107,17 @@ class Search extends Component {
   }
 
   render() {
+    let { getBy, category, type } = this.state
+    let title = ''
+    if(getBy == 'CATEGORY') {
+      title = 'Search By Category - ' + category
+    } else {
+      title = 'Search by Type - ' + type
+    }
+
     return (
       <Fragment>
-        <Navbar title="Detail" />
+        <Navbar title={ title } />
         <div className="ph-detail__container">
           <section name="section-popular" className="container">
             { this.renderCardAssets() }
