@@ -65,6 +65,7 @@ class UserProfile extends React.Component {
       scheme: "",
       asset_type: "",
       category: "",
+      city: "",
       address: "",
       land_area: "",
       building_area: "",
@@ -87,7 +88,7 @@ class UserProfile extends React.Component {
       asset_type: this.state.asset_type || "",
       name: this.state.name || "",
       address: this.state.address || "",
-      city: "",
+      city: this.state.city || "",
       category: this.state.category || "",
       land_area: parseInt(this.state.land_area) || 0,
       building_area: parseInt(this.state.building_area) || "",
@@ -95,7 +96,7 @@ class UserProfile extends React.Component {
       info: this.state.info || "",
       start_price: parseInt(this.state.start_price) || 0,
       start_time: 1566669482470,
-      end_time: 1566669482470
+      end_time: 1567123200000
     };
 
     this.setState({ input: mockInput }, () => this.handleSendData());
@@ -117,6 +118,7 @@ class UserProfile extends React.Component {
       scheme,
       asset_type,
       category,
+      city,
       address,
       land_area,
       building_area,
@@ -184,6 +186,20 @@ class UserProfile extends React.Component {
                       }}
                       onChange={e => this.handleChange("category", e)}
                       value={category}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <CustomInput
+                      labelText="Kota"
+                      id="city"
+                      name="city"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      onChange={e => this.handleChange("city", e)}
+                      value={city}
                     />
                   </GridItem>
                 </GridContainer>
