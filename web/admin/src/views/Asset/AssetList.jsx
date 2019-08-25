@@ -67,7 +67,8 @@ const tableHeader = [
   "Kategori",
   "Start Time",
   "End Time",
-  "Start Price"
+  "Start Price",
+  "Action"
 ];
 
 class AssetList extends React.Component {
@@ -92,6 +93,13 @@ class AssetList extends React.Component {
       result.push(d["start_time"]);
       result.push(d["end_time"]);
       result.push(d["start_price"]);
+      result.push(
+        d["running"] ? (
+          <Button color="primary">Nonaktifkan</Button>
+        ) : (
+          <Button color="primary">Aktifkan</Button>
+        )
+      );
 
       res.push(result);
     });

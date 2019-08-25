@@ -17,7 +17,7 @@
 */
 import React from "react";
 // nodejs library to set properties for components
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // import InputLabel from "@material-ui/core/InputLabel";
@@ -90,8 +90,8 @@ class UserProfile extends React.Component {
       address: this.state.address || "",
       city: this.state.city || "",
       category: this.state.category || "",
-      land_area: parseInt(this.state.land_area) || 0,
-      building_area: parseInt(this.state.building_area) || "",
+      land_area: parseFloat(this.state.land_area) || 0,
+      building_area: parseFloat(this.state.building_area) || "",
       certificate_type: this.state.certificate_type || "",
       info: this.state.info || "",
       start_price: parseInt(this.state.start_price) || 0,
@@ -106,7 +106,7 @@ class UserProfile extends React.Component {
     let payload = this.state.input;
     assetService.insertAsset(payload, result => {
       if (result.success) {
-        console.log("result", result);
+        window.location.href = "/admin/assetList";
       }
     });
   };
@@ -370,5 +370,9 @@ class UserProfile extends React.Component {
     );
   }
 }
+
+UserProfile.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(UserProfile);

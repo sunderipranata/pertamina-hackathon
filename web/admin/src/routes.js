@@ -55,14 +55,14 @@ const dashboardRoutes = [
     icon: Person,
     component: AssetNew,
     layout: "/admin"
-  },
-  {
-    path: "/auctionList",
-    name: "Daftar Lelang",
-    icon: "content_paste",
-    component: AuctionList,
-    layout: "/admin"
   }
+  // {
+  //   path: "/auctionList",
+  //   name: "Daftar Lelang",
+  //   icon: "content_paste",
+  //   component: AuctionList,
+  //   layout: "/admin"
+  // }
   // {
   //   path: "/typography",
   //   name: "Typography",
