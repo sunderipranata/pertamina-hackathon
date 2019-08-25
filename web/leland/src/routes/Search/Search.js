@@ -91,7 +91,7 @@ class Search extends Component {
           type= { a.type }
           location= { a.city }
           area={ a.type == 'TANAH' ? a.land_area : a.building_area }
-          bidders={ 101 }
+          bidders={ 500 }
           suit= { a.category }
           price={ a.start_price }
           style = {{ marginBottom: '10' }}

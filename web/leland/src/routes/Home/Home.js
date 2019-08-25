@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import Slider from 'react-slick'
 import { Link } from 'react-router-dom'
+import { thousandSeparator } from '../../utils/currency'
 
 import './Home.scss'
 import category_tanah from './assets/category-tanah.png'
@@ -66,10 +67,10 @@ class Home extends Component {
           <CardAssets
             id = { firstRunningAsset.id }
             title= { firstRunningAsset.name }
-            type= { firstRunningAsset.type }
+            type='Tanah'
             location= { firstRunningAsset.city }
             area={ firstRunningAsset.type == 'TANAH' ? firstRunningAsset.land_area : firstRunningAsset.building_area }
-            bidders={ 101 }
+            bidders={ 500 }
             suit= { firstRunningAsset.category }
             price={ firstRunningAsset.start_price }
           />
@@ -97,22 +98,24 @@ class Home extends Component {
             if(mod == 2)
               url = sample_tanah_3
             let obj = (
-              <Link to={'/detail/' + a.id} className="u-block card ph-home__ongoing" style={{ 'width': '200px' }}>
-                <div className="assets-image"
-                  style={{
-                    'background': 'url('+ url +') no-repeat center center',
-                    'backgroundSize': 'cover',
-                    'backgroundPosition': 'top'}}
-                />
-                <div className="ongoing-container">
-                  <p className="price u-bold">Rp { a.start_price }</p>
-                  <div className="location">
-                    <img src={ic_location} style={{ marginRight: '8px' }} />
-                    { a.city }
+              <div style={{ 'width': '240px' }}>
+              <Link to={'/detail/' + a.id} className="card ph-home__ongoing u-block">
+                  <div className="assets-image"
+                    style={{
+                      'background': 'url('+ url +') no-repeat center center',
+                      'backgroundSize': 'cover',
+                      'backgroundPosition': 'top'}}
+                  />
+                  <div className="ongoing-container">
+                    <p className="price u-bold">Rp {thousandSeparator(a.start_price)}</p>
+                    <div className="location">
+                      <img src={ic_location} style={{ marginRight: '8px' }} />
+                      { a.city }
+                    </div>
+                    <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
                   </div>
-                  <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
-                </div>
-              </Link>
+                </Link>
+              </div>
             )
             remainingRunningAssets.push(obj)
           }

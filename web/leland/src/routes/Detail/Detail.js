@@ -168,6 +168,7 @@ class Detail extends Component {
                     Aset cocok untuk
                   </p>
                   {suitArr.map((item, i) => (
+                    item == '' ? '' :
                     <span key={i} className="chips chips--main">{item}</span>
                   ))}
                 </div>
