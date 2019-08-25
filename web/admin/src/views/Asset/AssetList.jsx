@@ -60,12 +60,14 @@ const styles = {
 
 const tableHeader = [
   "ID",
-  "Scheme",
   "Name",
+  "Scheme",
   "City",
-  "Start Price",
+  "Tipe Aset",
+  "Kategori",
   "Start Time",
-  "End Time"
+  "End Time",
+  "Start Price"
 ];
 
 class AssetList extends React.Component {
@@ -82,12 +84,14 @@ class AssetList extends React.Component {
     data.forEach(d => {
       let result = [];
       result.push(d["id"]);
-      result.push(d["scheme"]);
       result.push(d["name"]);
+      result.push(d["scheme"]);
       result.push(d["city"]);
-      result.push(d["start_price"]);
+      result.push(d["asset_type"]);
+      result.push(d["category"]);
       result.push(d["start_time"]);
       result.push(d["end_time"]);
+      result.push(d["start_price"]);
 
       res.push(result);
     });
