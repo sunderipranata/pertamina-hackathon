@@ -95,9 +95,10 @@ class AssetList extends React.Component {
       result.push(d["start_price"]);
       result.push(
         d["running"] ? (
-          <Button color="primary">Nonaktifkan</Button>
+          // <Button color="primary">Nonaktifkan</Button>
+          <div>Sedang aktif</div>
         ) : (
-          <Button color="primary">Aktifkan</Button>
+          <Button color="primary" onClick = { this.handleToggle.bind(this, d["id"]) }>Aktifkan</Button>
         )
       );
 
@@ -105,6 +106,14 @@ class AssetList extends React.Component {
     });
 
     return res;
+  }
+
+  handleToggle = (id) => {
+    assetService.toggle(id, result => {
+      if (result.success) {
+        window.location.href = "/admin/assetList";
+      }
+    });
   }
 
   componentDidMount() {

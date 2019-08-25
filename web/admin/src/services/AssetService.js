@@ -29,7 +29,7 @@ assetService.getAllAssets = function (callback) {
 
 assetService.insertAsset = function (payload, callback) {
   request
-    .post(baseUrl + postInsertAssetsPath)
+    .patch(baseUrl + postInsertAssetsPath)
     .set('Content-Type', 'application/json')
     .send(payload)
     .end(function (err, res) {
@@ -46,6 +46,29 @@ assetService.insertAsset = function (payload, callback) {
         callback(result);
       }
     });
+}
+
+assetService.toggle = function(id, callback) {
+  request
+    .patch(baseUrl + provideToggleRunningAssetPath(id))
+    .end(function (err, res) {
+      if(err) {
+        let result = {
+          success: false,
+          data: err
+        }
+        callback(result)
+      } else {
+        let result = {
+          success: true
+        }
+        callback(result);
+      }
+    });
+}
+
+let provideToggleRunningAssetPath = function(id) {
+  return "/assets/" + id + "/running"
 }
 
 export default assetService
