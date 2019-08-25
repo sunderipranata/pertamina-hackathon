@@ -29,7 +29,7 @@ assetService.getAllAssets = function (callback) {
 
 assetService.insertAsset = function (payload, callback) {
   request
-    .patch(baseUrl + postInsertAssetsPath)
+    .post(baseUrl + postInsertAssetsPath)
     .set('Content-Type', 'application/json')
     .send(payload)
     .end(function (err, res) {
@@ -50,7 +50,8 @@ assetService.insertAsset = function (payload, callback) {
 
 assetService.toggle = function(id, callback) {
   request
-    .patch(baseUrl + provideToggleRunningAssetPath(id))
+    .post(baseUrl + provideToggleRunningAssetPath(id))
+    .set('Content-Type', 'application/json')
     .end(function (err, res) {
       if(err) {
         let result = {

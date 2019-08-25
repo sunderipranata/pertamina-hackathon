@@ -97,22 +97,20 @@ class Home extends Component {
             if(mod == 2)
               url = sample_tanah_3
             let obj = (
-              <Link to={'/detail/' + a.id} className="u-block" style={{ 'width': '200px' }}>
-                <div className="card ph-home__ongoing">
-                  <div className="assets-image"
-                    style={{
-                      'background': 'url('+ url +') no-repeat center center',
-                      'backgroundSize': 'cover',
-                      'backgroundPosition': 'top'}}
-                  />
-                  <div className="ongoing-container">
-                    <p className="price u-bold">Rp { a.start_price }</p>
-                    <div className="location">
-                      <img src={ic_location} style={{ marginRight: '8px' }} />
-                      { a.city }
-                    </div>
-                    <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
+              <Link to={'/detail/' + a.id} className="u-block card ph-home__ongoing" style={{ 'width': '200px' }}>
+                <div className="assets-image"
+                  style={{
+                    'background': 'url('+ url +') no-repeat center center',
+                    'backgroundSize': 'cover',
+                    'backgroundPosition': 'top'}}
+                />
+                <div className="ongoing-container">
+                  <p className="price u-bold">Rp { a.start_price }</p>
+                  <div className="location">
+                    <img src={ic_location} style={{ marginRight: '8px' }} />
+                    { a.city }
                   </div>
+                  <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
                 </div>
               </Link>
             )
