@@ -144,13 +144,13 @@ class Home extends Component {
           <section name="section-category" className="container">
             <h2 className="u-m0">Kategori Aset</h2>
             <div className="ph-home__category ">
-              <a href="/search?type=TANAH">
+              <a href="/search?type=Tanah">
               <div className="card container u-center">
                 <img src={category_tanah} width="70" />
                 <p className="text u-mb0">Tanah</p>
               </div>
               </a>
-              <a href="/search?type=BANGUNAN">
+              <a href="/search?type=Bangunan">
               <div className="card container u-center">
                 <img src={category_bangunan} width="70" />
                 <p className="text u-mb0">Bangunan</p>
@@ -162,7 +162,7 @@ class Home extends Component {
             <h2 className="u-m0">Aset cocok untuk</h2>
           </section>
           <div className="overflow-x-scroll">
-            <a href="/search?category=KAFE">
+            <a href="/search?category=Kafe">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_cafe + ') no-repeat center center',
@@ -171,7 +171,7 @@ class Home extends Component {
               <p className="text u-m0 u-right">Kafe</p>
             </div>
             </a>
-            <a href="/search?category=KEBUN">
+            <a href="/search?category=Kebun">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_kebun + ') no-repeat center center',
@@ -180,7 +180,7 @@ class Home extends Component {
               <p className="text u-m0 u-right">Kebun</p>
             </div>
             </a>
-            <a href="/search?category=GUDANG">
+            <a href="/search?category=Gudang">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_gudang + ') no-repeat center center',
@@ -189,7 +189,7 @@ class Home extends Component {
               <p className="text u-m0 u-right">Gudang</p>
             </div>
             </a>
-            <a href="/search?category=KANTOR">
+            <a href="/search?category=Kantor">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_kantor + ') no-repeat center center',
@@ -198,7 +198,7 @@ class Home extends Component {
               <p className="text u-m0 u-right">Kantor</p>
             </div>
             </a>
-            <a href="/search?category=RESTORAN">
+            <a href="/search?category=Restoran">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_restoran + ') no-repeat center center',
@@ -207,7 +207,7 @@ class Home extends Component {
               <p className="text u-m0 u-right">Restoran</p>
             </div>
             </a>
-            <a href="/search?category=PARKIR">
+            <a href="/search?category=Parkir">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_parkir + ') no-repeat center center',
