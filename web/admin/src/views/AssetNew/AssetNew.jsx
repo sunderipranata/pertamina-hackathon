@@ -17,7 +17,7 @@
 */
 import React from "react";
 // nodejs library to set properties for components
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 // @material-ui/core components
 import withStyles from "@material-ui/core/styles/withStyles";
 // import InputLabel from "@material-ui/core/InputLabel";
@@ -65,6 +65,7 @@ class UserProfile extends React.Component {
       scheme: "",
       asset_type: "",
       category: "",
+      city: "",
       address: "",
       land_area: "",
       building_area: "",
@@ -87,15 +88,15 @@ class UserProfile extends React.Component {
       asset_type: this.state.asset_type || "",
       name: this.state.name || "",
       address: this.state.address || "",
-      city: "",
+      city: this.state.city || "",
       category: this.state.category || "",
-      land_area: parseInt(this.state.land_area) || 0,
-      building_area: parseInt(this.state.building_area) || "",
+      land_area: parseFloat(this.state.land_area) || 0,
+      building_area: parseFloat(this.state.building_area) || "",
       certificate_type: this.state.certificate_type || "",
       info: this.state.info || "",
       start_price: parseInt(this.state.start_price) || 0,
       start_time: 1566669482470,
-      end_time: 1566669482470
+      end_time: 1567123200000
     };
 
     this.setState({ input: mockInput }, () => this.handleSendData());
@@ -105,7 +106,7 @@ class UserProfile extends React.Component {
     let payload = this.state.input;
     assetService.insertAsset(payload, result => {
       if (result.success) {
-        console.log("result", result);
+        window.location.href = "/admin/assetList";
       }
     });
   };
@@ -117,6 +118,7 @@ class UserProfile extends React.Component {
       scheme,
       asset_type,
       category,
+      city,
       address,
       land_area,
       building_area,
@@ -184,6 +186,20 @@ class UserProfile extends React.Component {
                       }}
                       onChange={e => this.handleChange("category", e)}
                       value={category}
+                    />
+                  </GridItem>
+                </GridContainer>
+                <GridContainer>
+                  <GridItem xs={12} sm={12} md={12}>
+                    <CustomInput
+                      labelText="Kota"
+                      id="city"
+                      name="city"
+                      formControlProps={{
+                        fullWidth: true
+                      }}
+                      onChange={e => this.handleChange("city", e)}
+                      value={city}
                     />
                   </GridItem>
                 </GridContainer>
@@ -354,5 +370,9 @@ class UserProfile extends React.Component {
     );
   }
 }
+
+UserProfile.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(UserProfile);

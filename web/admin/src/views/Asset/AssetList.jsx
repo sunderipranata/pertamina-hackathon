@@ -67,7 +67,8 @@ const tableHeader = [
   "Kategori",
   "Start Time",
   "End Time",
-  "Start Price"
+  "Start Price",
+  "Action"
 ];
 
 class AssetList extends React.Component {
@@ -92,11 +93,27 @@ class AssetList extends React.Component {
       result.push(d["start_time"]);
       result.push(d["end_time"]);
       result.push(d["start_price"]);
+      result.push(
+        d["running"] ? (
+          // <Button color="primary">Nonaktifkan</Button>
+          <div>Sedang aktif</div>
+        ) : (
+          <Button color="primary" onClick = { this.handleToggle.bind(this, d["id"]) }>Aktifkan</Button>
+        )
+      );
 
       res.push(result);
     });
 
     return res;
+  }
+
+  handleToggle = (id) => {
+    assetService.toggle(id, result => {
+      if (result.success) {
+        window.location.href = "/admin/assetList";
+      }
+    });
   }
 
   componentDidMount() {

@@ -48,7 +48,7 @@ class Home extends Component {
       if (result.success) {
         console.log('result', result.data.data)
         this.setState({
-          runningAssets: result.data.data
+          runningAssets: result.data.data == null ? [] : result.data.data
         })
       }
     });
