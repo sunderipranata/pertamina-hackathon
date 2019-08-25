@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import Slider from 'react-slick'
+import { Link } from 'react-router-dom'
 
 import './Home.scss'
 import category_tanah from './assets/category-tanah.png'
@@ -20,6 +21,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import CardAssets from '../../components/CardAssets'
 import assetService from '../../services/AssetService'
+
+import { withRouter } from 'react-router-dom'
 
 const sliderSettings = {
   autoplay: false,
@@ -67,7 +70,7 @@ class Home extends Component {
             location= { firstRunningAsset.city }
             area={ firstRunningAsset.type == 'TANAH' ? firstRunningAsset.land_area : firstRunningAsset.building_area }
             bidders={ 101 }
-            suit= { firstRunningAsset.category } 
+            suit= { firstRunningAsset.category }
             price={ firstRunningAsset.start_price }
           />
         </section>
@@ -80,7 +83,7 @@ class Home extends Component {
             <h2 className="u-m0">Lelang lainnya</h2>
           </section>
         )
-  
+
         let remainingRunningAssets = []
         runningAssets.forEach((a, i) => {
           if(i > 0) {
@@ -94,7 +97,7 @@ class Home extends Component {
             if(mod == 2)
               url = sample_tanah_3
             let obj = (
-              <div style={{ 'width': '200px' }}>
+              <Link to={'/detail/' + a.id} className="u-block" style={{ 'width': '200px' }}>
                 <div className="card ph-home__ongoing">
                   <div className="assets-image"
                     style={{
@@ -111,18 +114,17 @@ class Home extends Component {
                     <p className="area u-m0">{ isLand ? 'Luas Tanah: ' + a.land_area + ' m' : 'Luas Bangunan: ' + a.building_area + ' m' }<sup>2</sup></p>
                   </div>
                 </div>
-              </div>
+              </Link>
             )
-  
             remainingRunningAssets.push(obj)
           }
         })
-  
+
         result.push(
           <Slider {...sliderSettings}>
             { remainingRunningAssets }
           </Slider>
-        ) 
+        )
       }
     }
     return (
@@ -141,20 +143,25 @@ class Home extends Component {
           <section name="section-category" className="container">
             <h2 className="u-m0">Kategori Aset</h2>
             <div className="ph-home__category ">
+              <a href="/search?type=TANAH">
               <div className="card container u-center">
                 <img src={category_tanah} width="70" />
                 <p className="text u-mb0">Tanah</p>
               </div>
+              </a>
+              <a href="/search?type=BANGUNAN">
               <div className="card container u-center">
                 <img src={category_bangunan} width="70" />
                 <p className="text u-mb0">Bangunan</p>
               </div>
+              </a>
             </div>
           </section>
           <section name="section-suit-fot" className="container">
             <h2 className="u-m0">Aset cocok untuk</h2>
           </section>
           <div className="overflow-x-scroll">
+            <a href="/search?category=KAFE">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_cafe + ') no-repeat center center',
@@ -162,6 +169,8 @@ class Home extends Component {
               }}>
               <p className="text u-m0 u-right">Kafe</p>
             </div>
+            </a>
+            <a href="/search?category=KEBUN">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_kebun + ') no-repeat center center',
@@ -169,6 +178,8 @@ class Home extends Component {
               }}>
               <p className="text u-m0 u-right">Kebun</p>
             </div>
+            </a>
+            <a href="/search?category=GUDANG">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_gudang + ') no-repeat center center',
@@ -176,6 +187,8 @@ class Home extends Component {
               }}>
               <p className="text u-m0 u-right">Gudang</p>
             </div>
+            </a>
+            <a href="/search?category=KANTOR">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_kantor + ') no-repeat center center',
@@ -183,6 +196,8 @@ class Home extends Component {
               }}>
               <p className="text u-m0 u-right">Kantor</p>
             </div>
+            </a>
+            <a href="/search?category=RESTORAN">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_restoran + ') no-repeat center center',
@@ -190,6 +205,8 @@ class Home extends Component {
               }}>
               <p className="text u-m0 u-right">Restoran</p>
             </div>
+            </a>
+            <a href="/search?category=PARKIR">
             <div className="ph-home__suit-for"
               style={{
                 'background': 'url(' + suit_for_parkir + ') no-repeat center center',
@@ -197,8 +214,9 @@ class Home extends Component {
               }}>
               <p className="text u-m0 u-right">Parkir</p>
             </div>
+            </a>
           </div>
-          
+
           { this.renderRunningAssets() }
 
         </div>
@@ -207,4 +225,4 @@ class Home extends Component {
   }
 }
 
-export default Home
+export default withRouter(Home)

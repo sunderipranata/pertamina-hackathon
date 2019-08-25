@@ -2,6 +2,7 @@ import request from 'superagent'
 
 const baseUrl = 'http://10.50.0.68:1234'
 const getAllAssetsPath = '/assets'
+const postInsertAssetsPath = '/assets'
 let assetService = {};
 
 assetService.getAllAssets = function (callback) {
@@ -23,6 +24,27 @@ assetService.getAllAssets = function (callback) {
       }
 
       callback(result)
+    });
+}
+
+assetService.insertAsset = function (payload, callback) {
+  request
+    .post(baseUrl + postInsertAssetsPath)
+    .set('Content-Type', 'application/json')
+    .send(payload)
+    .end(function (err, res) {
+      if(err) {
+        let result = {
+          success: false,
+          data: err
+        }
+        callback(result)
+      } else {
+        let result = {
+          success: true
+        }
+        callback(result);
+      }
     });
 }
 

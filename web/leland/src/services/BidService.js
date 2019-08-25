@@ -13,13 +13,13 @@ bidService.placeBid = function (payload, callback) {
     .end(function (err, res) {
       if(err) {
         let result = {
-          isSuccess: false,
+          success: false,
           data: err
         }
         callback(result)
       } else {
         let result = {
-          isSuccess: true
+          success: true
         }
         callback(result);
       }

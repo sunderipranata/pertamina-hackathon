@@ -7,7 +7,19 @@ import { thousandSeparator } from '../../utils/currency'
 import ic_success from './assets/ic-checklist.png'
 
 class Summary extends Component {
+
+  constructor(props) {
+    super()
+
+    this.state = {
+      price: props.match.params.price
+    }
+  }
+
+
   render() {
+    let { price } = this.state
+
     return (
       <Fragment>
         <Navbar title="Ringkasan" />
@@ -26,7 +38,7 @@ class Summary extends Component {
                 <tbody>
                   <tr>
                     <td>Harga Penawaran Anda</td>
-                    <td className="u-right">Rp{thousandSeparator(800000000)}</td>
+                    <td className="u-right">Rp{thousandSeparator(price)}</td>
                   </tr>
                 </tbody>
               </table>

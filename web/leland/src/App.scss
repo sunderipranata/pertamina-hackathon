@@ -124,6 +124,7 @@ a {
   height: 12px;
   border-image: initial;
   overflow: hidden;
+  text-transform: capitalize;
 
   &--main {
     background-color: $color-grey;

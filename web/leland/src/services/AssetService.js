@@ -92,12 +92,63 @@ assetService.getAuctionInfo = function(assetId, callback) {
     })
 }
 
+assetService.getByCategory = function(category, callback) {
+  request
+    .get(baseUrl + provideGetByCategoryPath(category))
+    .end(function (err, res) {
+      let result = {
+        success: '',
+        data: ''
+      }
+
+      if (err) {
+        console.log('error', err)
+        result.success = false
+      } else {
+        result.success = true
+        result.data = res.body
+      }
+      console.log('service get by category result', result)
+      callback(result)
+    })
+}
+
+assetService.getByType = function(type, callback) {
+  request
+    .get(baseUrl + provideGetByTypePath(type))
+    .end(function (err, res) {
+      let result = {
+        success: '',
+        data: ''
+      }
+
+      if (err) {
+        console.log('error', err)
+        result.success = false
+      } else {
+        result.success = true
+        result.data = res.body
+      }
+
+      console.log('service get by type result', result)
+      callback(result)
+    })
+}
+
 let provideGetAssetByIdPath = function (id) {
   return getAllAssetsPath + "/" + id;
 }
 
 let provideGetAuctionInfoByAssetIdPath = function(id) {
   return getAuctionInfoPath + "/" + id;
+}
+
+let provideGetByCategoryPath = function(category) {
+  return getRunningAssetsPath + "?category=" + category
+}
+
+let provideGetByTypePath = function(type) {
+  return getRunningAssetsPath + "?asset_type=" + type
 }
 
 export default assetService
