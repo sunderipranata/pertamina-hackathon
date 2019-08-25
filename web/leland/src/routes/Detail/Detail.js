@@ -220,10 +220,10 @@ class Detail extends Component {
                 <img src={ic_time} style={{ marginRight: '8px' }}  />
                 <div>
                   {/* <Countdown date={`${year}-12-24T00:00:00`} /> */}
-                  <Countdown date = { new Date(assetDetail.start_time) } />
+                  <Countdown date = { new Date(assetDetail.end_time) } />
                   <p className="u-m0 label--disabled">
                     Lelang berakhir{' '}
-                    <strong>{ moment(new Date(assetDetail.start_time)).format('YYYY-MM-DD') }</strong>
+                    <strong>{ moment(new Date(assetDetail.end_time)).format('YYYY-MM-DD') }</strong>
                   </p>
                 </div>
               </div>
