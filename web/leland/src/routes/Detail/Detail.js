@@ -18,6 +18,7 @@ import assetService from '../../services/AssetService'
 import bidService from '../../services/BidService'
 
 import { withRouter } from 'react-router-dom'
+import moment from 'moment'
 
 import './Detail.scss'
 
@@ -222,7 +223,7 @@ class Detail extends Component {
                   <Countdown date = { new Date(assetDetail.start_time) } />
                   <p className="u-m0 label--disabled">
                     Lelang berakhir{' '}
-                    <strong>{ assetDetail.start_time }</strong>
+                    <strong>{ moment(new Date(assetDetail.start_time)).format('YYYY-MM-DD') }</strong>
                   </p>
                 </div>
               </div>
