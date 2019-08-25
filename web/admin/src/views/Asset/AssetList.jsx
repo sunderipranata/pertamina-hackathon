@@ -95,8 +95,7 @@ class AssetList extends React.Component {
       result.push(d["start_price"]);
       result.push(
         d["running"] ? (
-          // <Button color="primary">Nonaktifkan</Button>
-          <div>Sedang aktif</div>
+          <Button color="primary" onClick = { this.handleToggle.bind(this, d["id"]) }>Nonaktifkan</Button>
         ) : (
           <Button color="primary" onClick = { this.handleToggle.bind(this, d["id"]) }>Aktifkan</Button>
         )
