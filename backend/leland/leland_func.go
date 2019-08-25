@@ -51,13 +51,17 @@ func (leland *Leland) GetAuctions(assetID string) (auctions []Auction, err error
 func (leland *Leland) GetAuctionInfo(assetID string) (auctionInfo AuctionInfo, err error) {
 	var auctions []Auction
 	auctions, err = leland.database.GetAuctions(assetID)
+	var max, avg uint
 	var prices []uint
 
 	for _, auction := range auctions {
 		prices = append(prices, auction.BidPrice)
 	}
-	_, max := helper.MinMax(prices)
-	avg := helper.Avg(prices)
+
+	if len(prices) != 0 {
+		_, max = helper.MinMax(prices)
+		avg = helper.Avg(prices)
+	}
 
 	auctionInfo = AuctionInfo{
 		MaxPrice: max,
@@ -71,3 +75,21 @@ func (leland *Leland) InsertNewAuction(newAuction Auction) (err error) {
 	err = leland.database.InsertAuction(newAuction)
 	return errors.Wrap(err, "could not insert new auction")
 }
+
+// // PredictAsset queries to Leland ML service
+// func (leland *Leland) PredictAsset(assetPredictionRequest AssetPredictionRequest) (assetPredictionResult AssetPredictionResult, err error) {
+// 	urlString := os.Getenv("LELAND_ML_API_SERVER")
+
+// 	formData := url.Values{
+// 		"name": {"asdf"},
+// 	}
+
+// 	resp, err := http.PostForm(urlString, formData)
+// 	if err != nil {
+// 		return assetPredictionResult, errors.Wrap(err, "error connecting to ML server")
+// 	}
+
+// 	err = json.NewDecoder(resp.Body).Decode(&assetPredictionResult)
+
+// 	return assetPredictionResult, nil
+// }
