@@ -9,13 +9,12 @@ CORS(app)
 api = Api(app)
 # Require a parser to parse our POST request.
 parser = reqparse.RequestParser()
-parser.add_argument("sepal_length")
-parser.add_argument("sepal_width")
-parser.add_argument("petal_length")
-parser.add_argument("petal_width")
+parser.add_argument("listingRegion")
+parser.add_argument("buildingSize")
+parser.add_argument("landSize")
 # Unpickle our model so we can use it!
-if os.path.isfile("./our_model.pkl"):
-  model = pickle.load(open("./our_model.pkl", "rb"))
+if os.path.isfile("rf_house.pkl"):
+  model = pickle.load(open("rf_house.pkl", "rb"))
 class Predict(Resource):
   def post(self):
     args = parser.parse_args()
@@ -23,10 +22,9 @@ class Predict(Resource):
     X = (
       np.array(
         [
-          args["sepal_length"],
-          args["sepal_width"],
-          args["petal_length"],
-          args["petal_width"]
+          args["listingRegion"],
+          args["buildingSize"],
+          args["landSize"]
         ]
       ).astype("float").reshape(1, -1)
     )
