@@ -34,7 +34,7 @@ import CardFooter from "components/Card/CardFooter.jsx";
 // import { textAlign } from "@material-ui/system";
 
 // import avatar from "assets/img/faces/marc.jpg";
-import assetService from '../../services/AssetService'
+import assetService from "../../services/AssetService";
 
 const styles = {
   cardCategoryWhite: {
@@ -99,16 +99,16 @@ class UserProfile extends React.Component {
     };
 
     this.setState({ input: mockInput }, () => this.handleSendData());
-  }
+  };
 
   handleSendData = () => {
     let payload = this.state.input;
-    assetService.insertAsset(payload, (result) => {
+    assetService.insertAsset(payload, result => {
       if (result.success) {
         console.log("result", result);
       }
     });
-  }
+  };
 
   render() {
     let {
